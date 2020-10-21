@@ -1,0 +1,30 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class bUTTONmANAGER : MonoBehaviour {
+
+    public void NewGame(string LivelloGioco)
+    {
+
+        SceneManager.LoadScene(LivelloGioco);
+
+    }
+
+    public void ExitGame()
+    {
+
+        Application.Quit();
+
+    }
+    public void ItemShop(string PassBattaglia)
+    {
+
+        SceneManager.LoadScene(PassBattaglia);
+
+    }
+
+    
+}
+
