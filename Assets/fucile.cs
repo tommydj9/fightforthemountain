@@ -25,9 +25,21 @@ public class fucile : MonoBehaviour
 
     void shoot()
     {
+        Ray ray;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit oggettoColpito;
 
         Instantiate(flash, puntoProiettili.position, puntoProiettili.rotation);
+
+        if (Physics.Raycast(ray , out oggettoColpito))
+        {
+            /*
+            Logica giusta ma il proiettile deve partire dal centro della camera 
+            e non dalla canna del fucile
+             
+             */
+        }
+
 
         if (Physics.Raycast(puntoProiettili.position, puntoProiettili.forward, out oggettoColpito, 15f))
         {
