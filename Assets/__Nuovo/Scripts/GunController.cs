@@ -13,6 +13,8 @@ public class GunController : MonoBehaviour
     private float fireRatioTime;
     public GameObject hitEffect;
 
+    public DamageController damageController;
+
 
     
     void Update()
@@ -28,15 +30,16 @@ public class GunController : MonoBehaviour
                 if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, distance))
                 {
                     Debug.Log(hit.transform.gameObject.name);
-                //Nemico.TakeDamage();
+                    //checkHit(hit);
 
                 GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(hitEffectObject, 1f);
 
                 }
 
-
         }
 
     }
+
+    
 }
