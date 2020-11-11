@@ -32,12 +32,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isTouch && velocity.y < 0)
         {
+
             velocity.y = -1;
             jumpCounter = 0;
         }
 
         if (Input.GetButtonDown("Jump") && jumpCounter < maxJumps)
-        {
+        { 
             velocity.y = Mathf.Sqrt(forzaSalto * gravity * -1);
             jumpCounter++;
         }
@@ -62,6 +63,23 @@ public class PlayerMovement : MonoBehaviour
     
      */
 
-    
+
+    /*
+    isTouch = Physics.CheckSphere(piedi.transform.position, 0.4f, terreno);
+
+        if (isTouch == true && caduta.y < 0)
+        {
+            caduta.y = 0f;
+            jumpCounter = 0
+
+        } 
+
+
+
+
+
+     */
+
+
 
 }
