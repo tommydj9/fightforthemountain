@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [Range(0,100)]
+    [Range(0,100000)]
     public float life = 100;
+    
 
     public GameObject head;
 

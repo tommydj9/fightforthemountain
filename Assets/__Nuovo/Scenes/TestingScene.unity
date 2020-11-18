@@ -1146,7 +1146,7 @@ PrefabInstance:
     - target: {fileID: 3557256984322534058, guid: a369e76ada49ed3478dba807fdbdf945,
         type: 3}
       propertyPath: life
-      value: 100
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3557256984322534068, guid: a369e76ada49ed3478dba807fdbdf945,
         type: 3}
@@ -1193,6 +1193,16 @@ PrefabInstance:
       propertyPath: bodyParts
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3557256984322534074, guid: a369e76ada49ed3478dba807fdbdf945,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 2124223632}
+    - target: {fileID: 3557256984322534074, guid: a369e76ada49ed3478dba807fdbdf945,
+        type: 3}
+      propertyPath: bodyParts
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3557256984322534075, guid: a369e76ada49ed3478dba807fdbdf945,
         type: 3}
       propertyPath: enemy
@@ -1232,6 +1242,12 @@ PrefabInstance:
       propertyPath: Sistema
       value: 
       objectReference: {fileID: 1000013355911406, guid: 532c8be46e6660e49a9e48ce60e82441,
+        type: 3}
+    - target: {fileID: 6554834462905899474, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: damagePopup
+      value: 
+      objectReference: {fileID: 9112191200250776838, guid: dfcd552ffc0904d45971b2940f78b028,
         type: 3}
     - target: {fileID: 6554834463083597930, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
