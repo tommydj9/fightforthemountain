@@ -1249,6 +1249,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9112191200250776838, guid: dfcd552ffc0904d45971b2940f78b028,
         type: 3}
+    - target: {fileID: 6554834462905899474, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
+        type: 3}
     - target: {fileID: 6554834463083597930, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_LocalPosition.x
