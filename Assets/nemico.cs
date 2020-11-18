@@ -21,15 +21,8 @@ public class nemico : MonoBehaviour
         rb.MovePosition(doveVado);
         transform.LookAt(bersaglio);
     }
-    public void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "umano")
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-
-        
+    
          
         
-    }
+    
 }

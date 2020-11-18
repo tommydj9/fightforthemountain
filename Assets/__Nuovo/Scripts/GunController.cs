@@ -13,6 +13,8 @@ public class GunController : MonoBehaviour
 
     public float fireRatio = 5;
     public GameObject hitEffect;
+    public GameObject Sistema;
+
 
     //Public
     [HideInInspector]
@@ -45,8 +47,9 @@ public class GunController : MonoBehaviour
                 {
                     Debug.Log(hit.transform.gameObject.name);
                     checkShoot(hit);
-                    
-                    //checkHit(hit);
+               
+
+                //checkHit(hit);
 
                 GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(hitEffectObject, 1f);
@@ -69,9 +72,17 @@ public class GunController : MonoBehaviour
                 case DamageController.BodyParts.head:
                     damageController.Hit(headDamage);
                     damageController.enemy.head.transform.localScale = Vector3.zero;
+                    Instantiate(Sistema, damageController.enemy.head.transform.position, Quaternion.identity);
+                    
+
+
+
                     break;
                 case DamageController.BodyParts.body:
                     damageController.Hit(bodyDamage);
+                    
+                    
+
                     break;
                 case DamageController.BodyParts.legs:
                     damageController.Hit(legsDamage);
