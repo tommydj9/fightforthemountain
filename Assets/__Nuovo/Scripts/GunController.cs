@@ -17,6 +17,7 @@ public class GunController : MonoBehaviour
     public GameObject Sistema;
 
 
+
     //Public
     [HideInInspector]
     public DamageController damageController;
@@ -77,10 +78,10 @@ public class GunController : MonoBehaviour
                     Quaternion sistemaRotation = Quaternion.identity;
                     sistemaRotation.eulerAngles = new Vector3(-90, 0, 0);
 
-                    Instantiate(Sistema, damageController.enemy.head.transform.position, sistemaRotation);
+                    GameObject bloods = Instantiate(Sistema, damageController.enemy.head.transform.position, sistemaRotation);
+                    bloods.transform.parent = damageController.transform;
+
                     ShowDamage(headDamage,_hit.point,damageController.enemy,Color.blue);
-
-
 
                     break;
                 case DamageController.BodyParts.body:
