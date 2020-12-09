@@ -19,7 +19,6 @@ public class GunController : MonoBehaviour
     public GameObject Sistema;
 
 
-
     //Public
     [HideInInspector]
     public DamageController damageController;
@@ -38,7 +37,6 @@ public class GunController : MonoBehaviour
     Vector3 popUpOffset = new Vector3(0,37f,100);
     Vector3 popupRandomIntensity = new Vector3(17f, 7f, 0);
 
-
     private void Awake()
     {
         playerAnimator = player.animator;
@@ -49,6 +47,7 @@ public class GunController : MonoBehaviour
         playerAnimator.SetInteger("Movement", 0);
     }
 
+
     void Update()
     {
         Shoot();
@@ -56,13 +55,12 @@ public class GunController : MonoBehaviour
     }
 
 
-    void Shoot()
+    public void Shoot()
     {
-        if (Input.GetButton("Fire1") && fireRatioTime <= Time.time && !isReloading())
+        if (Input.GetButton("Fire1") && fireRatioTime <= Time.time)
         {
-            playerAnimator.SetInteger("Fire", 2);
-
             fireRatioTime = Time.time + (1f / fireRatio);
+            playerAnimator.SetInteger("Fire", 2);
 
             //Sparo
             RaycastHit hit;
@@ -79,17 +77,17 @@ public class GunController : MonoBehaviour
 
             }
 
-        }else if (Input.GetButtonUp("Fire1"))
+        }
+        else if (Input.GetButtonUp("Fire1"))
         {
             playerAnimator.SetInteger("Fire", -1);
-            playerAnimator.SetInteger("Movement", -1);
+            playerAnimator.SetInteger("Movement", 0);
         }
-
     }
 
     void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading())
+        if (Input.GetKeyDown(KeyCode.R) && isReloading() == false)
         {
             reloadTime = reloadAnimationTime;
             playerAnimator.SetInteger("Reload", 1);
@@ -104,12 +102,20 @@ public class GunController : MonoBehaviour
             reloadTime -= Time.deltaTime;
         }
     }
-
-    private bool isReloading()
+   
+    bool isReloading()
     {
-        return (reloadTime <= 0 ? false : true);
-    }
+        //if (reloadTime <= 0)
+        //{
+        //    return false;
+        //}
+        //else{
+        //    return true;
+        //}
 
+        return (reloadTime <= 0 ? false : true);
+
+    }
 
     public void checkShoot(RaycastHit _hit)
     {

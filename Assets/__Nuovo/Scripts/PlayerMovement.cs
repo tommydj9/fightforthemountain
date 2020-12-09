@@ -31,12 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-     Movement();
-    }
-
-    void Movement()
-    {
-
         //Salto
         isTouch = Physics.CheckSphere(groundChecker.position, groundCheckerRadius, Terreno);
 
@@ -60,8 +54,6 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
-        animator.SetInteger("Movement", (x == 0 && z == 0) ? 0 : 1);
     }
-
     
 }
