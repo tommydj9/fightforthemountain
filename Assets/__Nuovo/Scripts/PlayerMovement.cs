@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public Animator animator;
+
     public float speed = 10f;
     private Vector3 velocity;
     public float gravity = -9.81f;
@@ -19,12 +22,19 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumps = 2;
     private int jumpCounter = 0;
 
-    
-    void Start()
-    {}
 
-   
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
+
+
     void Update()
+    {
+     Movement();
+    }
+
+    void Movement()
     {
 
         //Salto
@@ -38,48 +48,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Jump") && jumpCounter < maxJumps)
-        { 
+        {
             velocity.y = Mathf.Sqrt(forzaSalto * gravity * -1);
             jumpCounter++;
         }
 
-
-        //Movimento
-        float x = Input.GetAxis("Horizontal"); 
+        float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 movimento = transform.right * x + transform.forward * z;
         characterController.Move(movimento * Time.deltaTime * speed);
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
+        animator.SetInteger("Movement", (x == 0 && z == 0) ? 0 : 1);
     }
 
-    /*
-        Salto: Seguire la logica del movimento ma sull'asse Y
-               Posso saltare SOLO SE il player sta toccando il pavimento
-               (aggiungere un collider sui piedi e vedere se sta toccando il pavimento)
-
-                Extra: Abilità doppio salto.
     
-     */
-
-
-    /*
-    isTouch = Physics.CheckSphere(piedi.transform.position, 0.4f, terreno);
-
-        if (isTouch == true && caduta.y < 0)
-        {
-            caduta.y = 0f;
-            jumpCounter = 0
-
-        } 
-
-
-
-
-
-     */
-
-
-
 }
