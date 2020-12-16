@@ -41,13 +41,6 @@ public class EnemyController : MonoBehaviour
     public void Update()
     {
         
-
-        if (Input.GetKey(KeyCode.N))
-        {
-            playerFound = true;
-        }
-
-
         if (life < 950)
         {
             maxSpeed = maxRunSpeed;

@@ -7,6 +7,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+    [SerializeField]
+    private float life = 100;
+
     public Animator animator;
 
     public float speed = 10f;
@@ -55,5 +58,36 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
 
     }
-    
+
+    public void TakeDamage(float _damage)
+    {
+        life -= _damage;
+        if (life <= 0)
+        {
+           
+            Death();
+
+        }
+    }
+
+    public void Death()
+    {
+        //mettere animazione
+        //mettere suono
+        //mettere menù ricomincia
+        //Destroy(gameObject);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<DamageCollider>())
+        {
+            TakeDamage(other.GetComponent<DamageCollider>().damage);
+            
+        }
+    }
+
+
+
 }
