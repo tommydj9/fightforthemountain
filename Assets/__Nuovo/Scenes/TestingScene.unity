@@ -1350,6 +1350,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136977598}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1224508380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5438254038835229236, guid: 4613abf811e55224da29e403fad2d5f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5438254038301134168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1451107349 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5358619593419214965, guid: 4613abf811e55224da29e403fad2d5f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5438254038301134168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572392449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,12 +2101,12 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1874315985, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 1874315985, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1874315985, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.71
       objectReference: {fileID: 0}
     - target: {fileID: 1874315986, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
       propertyPath: m_IsTrigger
@@ -2103,6 +2115,11 @@ PrefabInstance:
     - target: {fileID: 1874315987, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
         type: 3}
@@ -2121,6 +2138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2133,16 +2155,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3284538750124337499, guid: a369e76ada49ed3478dba807fdbdf945,
         type: 3}
@@ -2197,6 +2209,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5358619593419214965, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5433775217502690609, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2229,6 +2246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.1
       objectReference: {fileID: 0}
@@ -2244,6 +2266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2256,16 +2283,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038077579207, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -2302,6 +2319,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229236, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229237, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2312,6 +2334,36 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 643645531}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1451107349}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: noAmmoSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ec5aee772147a114fb3195b9aaf347fb, type: 3}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: guns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 1224508380}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: guns.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: reloadAnimationTime

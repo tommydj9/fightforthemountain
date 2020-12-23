@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 public class GunController : MonoBehaviour
 {
 
@@ -12,11 +13,23 @@ public class GunController : MonoBehaviour
     public float distance;
     public Camera mainCamera;
     public GameObject damagePopup;
+    public int ammo;
+    public  int currentCartdrigeSize;
+    public int cartdrigeSize = 6;
+    public int cartdirges = 3;
+    public bool isReloading = false;
 
     public float fireRatio = 5;
     public float reloadAnimationTime = 2f; 
     public GameObject hitEffect;
     public GameObject Sistema;
+    public AudioSource audioSource;
+    public AudioClip shootingSound;
+    public AudioClip noAmmoSound;
+
+    public GameObject[] guns;
+
+    
 
 
     //Public
@@ -45,6 +58,8 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         playerAnimator.SetInteger("Movement", 0);
+        currentCartdrigeSize = cartdrigeSize;
+        ammo = cartdrigeSize * cartdirges;
     }
 
 
@@ -57,10 +72,21 @@ public class GunController : MonoBehaviour
 
     public void Shoot()
     {
-        if (Input.GetButton("Fire1") && fireRatioTime <= Time.time)
+        if (Input.GetButton("Fire1")  && currentCartdrigeSize == 0) {
+            //Aggiungere suono caricatore vuoto
+            audioSource.PlayOneShot(noAmmoSound);
+        }
+
+        if (Input.GetButton("Fire1") && fireRatioTime <= Time.time && currentCartdrigeSize > 0)
         {
+            
+            audioSource.PlayOneShot(shootingSound);
+
             fireRatioTime = Time.time + (1f / fireRatio);
             playerAnimator.SetInteger("Fire", 2);
+            currentCartdrigeSize--;
+
+            
 
             //Sparo
             RaycastHit hit;
@@ -87,35 +113,56 @@ public class GunController : MonoBehaviour
 
     void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R) && isReloading() == false)
+        if (Input.GetKeyDown(KeyCode.R) && isReloading == false)
         {
             reloadTime = reloadAnimationTime;
             playerAnimator.SetInteger("Reload", 1);
+
+
+            isReloading = true;
         }
-        if (reloadTime <= 1)
+        if (reloadTime <= 1 && isReloading == true)
         {
+            isReloading = false;
             reloadTime = 0;
             playerAnimator.SetInteger("Reload", -1);
+            //cartdirges = caricaTORI
+            //cartdrigeSize = capienza caricatore
+            // ammo = munizioni totali 
+            //currentCartdirge proiettili che hai nel caricatori 
+
+            currentCartdrigeSize = cartdrigeSize;
+            ammo = ammo - currentCartdrigeSize - cartdrigeSize; //sottrendo currenSize è come nella realtà
+
+            cartdirges--;
+            // 3 = 3 - 1 - 6
+
+            // muniz = 3
+            // currentC = 1
+            // current = 4
+
+            
+
         }
         else
         {
             reloadTime -= Time.deltaTime;
         }
     }
-   
-    bool isReloading()
-    {
-        //if (reloadTime <= 0)
-        //{
-        //    return false;
-        //}
-        //else{
-        //    return true;
-        //}
 
-        return (reloadTime <= 0 ? false : true);
 
-    }
+
+    //bool isReloading() {
+    //    if (reloadTime <= 0) {
+    //        return false;
+    //    }
+    //    else {
+    //        return true;
+    //    }
+
+    //    return (reloadTime <= 0 ? false : true);
+
+    //}
 
     public void checkShoot(RaycastHit _hit)
     {
