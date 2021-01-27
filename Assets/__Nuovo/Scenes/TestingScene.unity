@@ -1560,6 +1560,10 @@ MonoBehaviour:
   probilitySpawn: 0.5
   prefabGun: {fileID: 919132149155446097, guid: d220e5b874244b045a55314f40ab45d2,
     type: 3}
+  hasRockets: 1
+  TimeRocket: 3
+  RocketPrefab: {fileID: 1835727468}
+  effect: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   damageController: {fileID: 0}
 --- !u!4 &633686321
 Transform:
@@ -2360,6 +2364,10 @@ MonoBehaviour:
   CrosshairImage: {fileID: 0}
   probilitySpawn: 0
   prefabGun: {fileID: 0}
+  hasRockets: 0
+  TimeRocket: 0
+  RocketPrefab: {fileID: 0}
+  effect: {fileID: 0}
   damageController: {fileID: 0}
 --- !u!1 &1170646680
 GameObject:
@@ -2430,6 +2438,10 @@ MonoBehaviour:
   probilitySpawn: 0.5
   prefabGun: {fileID: 919132149155446097, guid: bafd7b1e1736b4643840c4411b8e8979,
     type: 3}
+  hasRockets: 0
+  TimeRocket: 0
+  RocketPrefab: {fileID: 0}
+  effect: {fileID: 0}
   damageController: {fileID: 0}
 --- !u!1 &1224508380 stripped
 GameObject:
@@ -3464,6 +3476,10 @@ MonoBehaviour:
   probilitySpawn: 0.5
   prefabGun: {fileID: 919132149155446097, guid: fdfbbcbbb73d8654e8619ba01a9b7bac,
     type: 3}
+  hasRockets: 0
+  TimeRocket: 0
+  RocketPrefab: {fileID: 0}
+  effect: {fileID: 0}
   damageController: {fileID: 0}
 --- !u!4 &1898813827
 Transform:
@@ -4362,6 +4378,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: SlotGun.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: animator.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: gun
       value: 
       objectReference: {fileID: 0}
@@ -4379,16 +4405,6 @@ PrefabInstance:
         type: 3}
       propertyPath: CurrentAnimator
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: SlotGun.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: animator.Array.size
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -4462,6 +4478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: guns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 643645531}
@@ -4517,11 +4538,6 @@ PrefabInstance:
         type: 3}
       propertyPath: probilitySpawn
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: guns.Array.size
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}

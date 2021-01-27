@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 
 public class GunController : MonoBehaviour
@@ -35,7 +36,12 @@ public class GunController : MonoBehaviour
     [Range(0,1)]
     public float probilitySpawn;
     public GameObject prefabGun;
-   
+
+    [Header("Rockets Information")]
+    public bool hasRockets;
+    public float TimeRocket;
+    public GameObject RocketPrefab;
+    public ParticleSystem effect;
 
     /*
      * Quando switcho arma:
@@ -123,6 +129,26 @@ public class GunController : MonoBehaviour
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, distance))
             {
                 //Debug.Log(hit.transform.gameObject.name);
+
+                /*
+                 * Controllo se l'arma spara razzi (== per il controllo)
+                 * prendo l'informazione hit.point per sapere dove andrà il razzo
+                 * Istanziare il razzo nel punto rocketStart (o aggiungi rocketstart sull'inspector oppure usi direttamente la transform dell'arma)
+                 * GameObject rocket = Instatiate(oggetto da istanziare, pos, Quaternion.identity);
+                 * rocket.DOMove(hit.point, velocità razzo)
+                 * OnComplete, far partire un effetto nella posizione hitpoint
+                 * 
+                 */
+
+                if (hasRockets == true)
+                {
+                    Vector3 RocketPosition = hit.point + Vector3.forward;
+                    GameObject Rocket = Instantiate(RocketPrefab, transform.position + new Vector3(0,0,10), Quaternion.identity);
+                    Rocket.transform.DOMove(RocketPosition, TimeRocket).OnComplete(() => effect.Play()); 
+
+                }
+
+
                 checkShoot(hit);
 
 

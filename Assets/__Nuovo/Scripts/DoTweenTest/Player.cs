@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public GameObject end;
     public Material red;
     public Material green;
+
+    public Ease playerArrivesEase;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,7 @@ public class Player : MonoBehaviour
 
     public void Move()
     {
-        transform.DOMove(end.transform.position, time).OnComplete(()=> transform.GetComponent<Renderer>().material = green);
+        transform.DOMove(end.transform.position, time).SetEase(playerArrivesEase).OnComplete(()=> transform.GetComponent<Renderer>().material = green);
         
     }
 
