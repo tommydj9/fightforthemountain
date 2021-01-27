@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GunController : MonoBehaviour
@@ -25,11 +26,32 @@ public class GunController : MonoBehaviour
     public GameObject Sistema;
     public AudioSource audioSource;
     public AudioClip shootingSound;
-    public AudioClip noAmmoSound;
+    public AudioClip ReloadSound;
+    public UIManager UImanager;
 
-    public GameObject[] guns;
+    public Image gunImage;//Senza contorno
+    public Image gunImageSelected; //Con contorno
+    public Sprite CrosshairImage;
+    [Range(0,1)]
+    public float probilitySpawn;
+    public GameObject prefabGun;
+   
+
+    /*
+     * Quando switcho arma:
+     * controllo l'index
+     * faccio un for e
+     * Se l'index dell' immagine = index arma
+     * allora attivo gunImageSelected
+     * 
+     * altrimenti attivo gunImage
+     * 
+     * 
+     * 
+     */
 
     
+
 
 
     //Public
@@ -52,14 +74,20 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
-        playerAnimator = player.animator;
-    }
-
-    private void Start()
-    {
-        playerAnimator.SetInteger("Movement", 0);
+        playerAnimator = player.CurrentAnimator;
+        currentCartdrigeSize = 6;
         currentCartdrigeSize = cartdrigeSize;
         ammo = cartdrigeSize * cartdirges;
+        UImanager.SetUiAmmo(currentCartdrigeSize.ToString());
+
+
+        
+    }
+    private void Start()
+    {
+        
+        playerAnimator.SetInteger("Movement", 0);
+      
     }
 
 
@@ -67,6 +95,7 @@ public class GunController : MonoBehaviour
     {
         Shoot();
         Reload();
+        playerAnimator = player.CurrentAnimator;
     }
 
 
@@ -74,7 +103,7 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetButton("Fire1")  && currentCartdrigeSize == 0) {
             //Aggiungere suono caricatore vuoto
-            audioSource.PlayOneShot(noAmmoSound);
+
         }
 
         if (Input.GetButton("Fire1") && fireRatioTime <= Time.time && currentCartdrigeSize > 0)
@@ -85,14 +114,15 @@ public class GunController : MonoBehaviour
             fireRatioTime = Time.time + (1f / fireRatio);
             playerAnimator.SetInteger("Fire", 2);
             currentCartdrigeSize--;
+            UImanager.SetUiAmmo(currentCartdrigeSize.ToString());
 
-            
+
 
             //Sparo
             RaycastHit hit;
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, distance))
             {
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log(hit.transform.gameObject.name);
                 checkShoot(hit);
 
 
@@ -113,10 +143,12 @@ public class GunController : MonoBehaviour
 
     void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R) && isReloading == false)
+        if (Input.GetKeyDown(KeyCode.R) && isReloading == false && cartdirges > 0 && currentCartdrigeSize < 1)
         {
             reloadTime = reloadAnimationTime;
             playerAnimator.SetInteger("Reload", 1);
+            audioSource.PlayOneShot(ReloadSound);
+            
 
 
             isReloading = true;
@@ -133,6 +165,7 @@ public class GunController : MonoBehaviour
 
             currentCartdrigeSize = cartdrigeSize;
             ammo = ammo - currentCartdrigeSize - cartdrigeSize; //sottrendo currenSize è come nella realtà
+            UImanager.SetUiAmmo(currentCartdrigeSize.ToString());
 
             cartdirges--;
             // 3 = 3 - 1 - 6
@@ -211,6 +244,8 @@ public class GunController : MonoBehaviour
         {
             Debug.LogWarning("Not enemy");
         }
+
+
 
     }
 

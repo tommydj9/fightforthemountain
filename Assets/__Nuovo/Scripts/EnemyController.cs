@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
 
     [Range(0,1000)]
-    public float life = 1000;
+    public float life = 250;
     public float maxWalkSpeed = 2.5f;
     public float maxRunSpeed = 5f;
     public float maxSpeed;
@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     public NavMeshAgent agent;
     public Transform positionReferencePlayer;
+   
 
     public bool playerFound = false;
 
@@ -33,15 +34,15 @@ public class EnemyController : MonoBehaviour
 
 
         //Aggiungere shader dissolvenza
-        Destroy(transform.gameObject, 1f);
-        transform.localScale = Vector3.zero;
+        
+        //transform.localScale = Vector3.zero;
 
     }
 
     public void Update()
     {
         
-        if (life < 950)
+        if (life < 50)
         {
             maxSpeed = maxRunSpeed;
         }
@@ -68,7 +69,7 @@ public class EnemyController : MonoBehaviour
             animator.SetFloat("speed", currentSpeed);
 
 
-            
+
         }
 
         distance = (positionReferencePlayer.position - transform.position).magnitude;
@@ -76,10 +77,13 @@ public class EnemyController : MonoBehaviour
 
         if (life <= 0f)
         {
-            animator.SetTrigger("death");
-            agent.speed = 0f;
-            Destroy(transform.gameObject, 3.5f);
             
+            Debug.Log("ddfhjhsd");
+            animator.SetTrigger("death");
+            agent.velocity = Vector3.zero;
+            Destroy(gameObject, 3.5f);
+            //Destroy(transform.gameObject, 10f);
+
         }
 
     }
