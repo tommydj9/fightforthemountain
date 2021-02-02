@@ -77,8 +77,6 @@ public class EnemyController : MonoBehaviour
 
         if (life <= 0f)
         {
-            
-            Debug.Log("ddfhjhsd");
             animator.SetTrigger("death");
             agent.velocity = Vector3.zero;
             Destroy(gameObject, 3.5f);

@@ -39,9 +39,15 @@ public class GunController : MonoBehaviour
 
     [Header("Rockets Information")]
     public bool hasRockets;
+    public float explosionDamage;
     public float TimeRocket;
+    public float explosionRadius;
+    public float explosionForce;
     public GameObject RocketPrefab;
-    public ParticleSystem effect;
+    public ParticleSystem explosionEffect;
+    public ParticleSystem fireEffect;
+    private bool shootedRocket;
+    private GameObject Rocket;
 
     /*
      * Quando switcho arma:
@@ -56,7 +62,7 @@ public class GunController : MonoBehaviour
      * 
      */
 
-    
+
 
 
 
@@ -93,7 +99,8 @@ public class GunController : MonoBehaviour
     {
         
         playerAnimator.SetInteger("Movement", 0);
-      
+        fireEffect.gameObject.SetActive(false);
+
     }
 
 
@@ -140,22 +147,38 @@ public class GunController : MonoBehaviour
                  * 
                  */
 
-                if (hasRockets == true)
+                if (hasRockets == true && !shootedRocket)
                 {
-                    Vector3 RocketPosition = hit.point + Vector3.forward;
-                    GameObject Rocket = Instantiate(RocketPrefab, transform.position + new Vector3(0,0,10), Quaternion.identity);
-                    Rocket.transform.DOMove(RocketPosition, TimeRocket).OnComplete(() => effect.Play()); 
+                    Vector3 RocketPosition = hit.point;
+                    explosionEffect.Stop();
+                    explosionEffect.gameObject.SetActive(false);
+                    Rocket = Instantiate(RocketPrefab, transform.position, transform.rotation * new Quaternion(0,180,0,0));
+                    if (!shootedRocket)
+                    {
+                        shootedRocket = true;
+                        fireEffect.gameObject.SetActive(true);
+                        fireEffect.transform.parent = Rocket.transform.GetChild(1).transform;
+                        fireEffect.transform.localPosition = Vector3.zero;
+                        fireEffect.transform.localScale = Vector3.one;
+                        fireEffect.Play();
+                        Rocket.transform.DOMove(RocketPosition, TimeRocket).OnComplete(() => RocketImpact(RocketPosition)); 
+                    }
 
                 }
+                else if(!hasRockets)
+                {
+                    checkShoot(hit);
+                }
 
-
-                checkShoot(hit);
+                
 
 
                 //checkHit(hit);
-
-                GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(hitEffectObject, 1f);
+                if (!hasRockets)
+                {
+                    GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    Destroy(hitEffectObject, 1f);
+                }
 
             }
 
@@ -289,12 +312,45 @@ public class GunController : MonoBehaviour
 
             Destroy(popup, 2f);
 
-
-
         } 
     }
 
-    
+    private void RocketImpact(Vector3 _impactPos)
+    {
+        PhysicsExplosion(_impactPos);
+        shootedRocket = false;
+        explosionEffect.transform.position = _impactPos;
+        explosionEffect.gameObject.SetActive(true);
+        explosionEffect.Play();
+        fireEffect.Stop();
+        fireEffect.gameObject.SetActive(false);
+        fireEffect.transform.parent = null;
+        Destroy(Rocket,.5f);
+    }
 
-    
+    private void PhysicsExplosion(Vector3 _impactPos)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(_impactPos, explosionRadius);
+
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.GetComponent<Rigidbody>() != null)
+            {
+                hitCollider.GetComponent<Rigidbody>().isKinematic = false;
+                hitCollider.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, _impactPos, explosionRadius, .02f, ForceMode.Impulse); 
+            }
+
+            if (hitCollider.GetComponent<EnemyController>())
+            {
+                hitCollider.GetComponent<EnemyController>().life -= explosionDamage;
+                ShowDamage(explosionDamage, _impactPos, hitCollider.GetComponent<EnemyController>(), Color.blue);
+            }
+        }
+
+    }
+
+
+
+
+
 }
