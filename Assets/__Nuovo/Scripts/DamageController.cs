@@ -11,7 +11,9 @@ public class DamageController : MonoBehaviour
         body,
         legs,
         arms,
-        feet
+        feet,
+        Rocket
+        
     }
 
     public BodyParts bodyParts;

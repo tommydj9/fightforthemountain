@@ -56,6 +56,12 @@ public class PlayerMovement : MonoBehaviour
             .GetComponent<GunController>().CrosshairImage;
         UImanager.actualCrosshairImage.sprite = UImanager.crosshair;
 
+        for (int i = 1; i < UImanager.ArrayImage.Length; i++)
+        {
+            UImanager.ArrayImage[i].enabled = false;
+        }
+        
+
     }
 
 

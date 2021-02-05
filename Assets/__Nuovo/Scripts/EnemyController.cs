@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour
     public float velocityRatio;
     public float lerpForce = 1;
     public float distance;
+    public float probabilitySpawn;
+    public GameObject prefabEnemy;
 
 
     public NavMeshAgent agent;
@@ -28,6 +30,7 @@ public class EnemyController : MonoBehaviour
 
 
     public GameObject head;
+    public EnemySpawner spawn;
 
     public void Die()
     {
@@ -79,6 +82,7 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetTrigger("death");
             agent.velocity = Vector3.zero;
+            spawn.SpawnEnemy();
             Destroy(gameObject, 3.5f);
             //Destroy(transform.gameObject, 10f);
 

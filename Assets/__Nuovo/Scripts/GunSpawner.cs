@@ -19,10 +19,12 @@ public class GunSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            CheckGun();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+           StartCoroutine("Timer");
+
+            
+        //}
     }
 
     public void CheckGun()
@@ -42,6 +44,7 @@ public class GunSpawner : MonoBehaviour
             else
             {
                 Debug.Log("Null");
+                
             }
 
         }
@@ -52,6 +55,32 @@ public class GunSpawner : MonoBehaviour
         Transform currentSpawn = SpawnGunPosition[SpawnValue];
         Instantiate(Guns[0].prefabGun, currentSpawn.position, Quaternion.identity);
     }
+
+    
+
+    IEnumerator Timer()
+    {
+        //CheckGun();
+        yield return new WaitForSeconds(3);
+        CheckGun();
+        yield return new WaitForSeconds(3);
+        CheckGun();
+        yield return new WaitForSeconds(3);
+        CheckGun();
+
+
+    }
+
+    //Dentro EnemyController deve esserci la referenza a EnemySpawner
+    //Quando Enemy muore chiamo enemySpawner.SpawnEnemy()
+    //Fare CheckEnemy (come checkGun ma con gli zombie)
+
+    public void SpawnEnemy()
+    {
+       StartCoroutine("Timer");
+    }
+
+    //StartCoroutine("Timer");
 
 
 }

@@ -48,6 +48,11 @@ public class GunController : MonoBehaviour
     public ParticleSystem fireEffect;
     private bool shootedRocket;
     private GameObject Rocket;
+    public Transform rocketStartPosition;
+    public GameObject attachedRocketModel;
+    public float Rocketspeed;
+    
+    
 
     /*
      * Quando switcho arma:
@@ -116,6 +121,8 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetButton("Fire1")  && currentCartdrigeSize == 0) {
             //Aggiungere suono caricatore vuoto
+            playerAnimator.SetInteger("Fire", -1);
+            playerAnimator.SetInteger("Movement", 0);
 
         }
 
@@ -123,9 +130,9 @@ public class GunController : MonoBehaviour
         {
             
             audioSource.PlayOneShot(shootingSound);
-
-            fireRatioTime = Time.time + (1f / fireRatio);
             playerAnimator.SetInteger("Fire", 2);
+            fireRatioTime = Time.time + (1f / fireRatio);
+           
             currentCartdrigeSize--;
             UImanager.SetUiAmmo(currentCartdrigeSize.ToString());
 
@@ -152,7 +159,9 @@ public class GunController : MonoBehaviour
                     Vector3 RocketPosition = hit.point;
                     explosionEffect.Stop();
                     explosionEffect.gameObject.SetActive(false);
-                    Rocket = Instantiate(RocketPrefab, transform.position, transform.rotation * new Quaternion(0,180,0,0));
+                    Rocket = Instantiate(RocketPrefab, rocketStartPosition.transform.position, transform.rotation * new Quaternion(0,180,0,0));
+                    attachedRocketModel.SetActive(false);
+                    
                     if (!shootedRocket)
                     {
                         shootedRocket = true;
@@ -162,13 +171,12 @@ public class GunController : MonoBehaviour
                         fireEffect.transform.localScale = Vector3.one;
                         fireEffect.Play();
                         Rocket.transform.DOMove(RocketPosition, TimeRocket).OnComplete(() => RocketImpact(RocketPosition)); 
+                        
+                      
                     }
 
                 }
-                else if(!hasRockets)
-                {
-                    checkShoot(hit);
-                }
+               
 
                 
 
@@ -178,10 +186,19 @@ public class GunController : MonoBehaviour
                 {
                     GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(hitEffectObject, 1f);
+                    checkShoot(hit);
                 }
 
             }
+            else
+            {
+                Debug.Log("entry");
+                Rocket = Instantiate(RocketPrefab, rocketStartPosition.transform.position, transform.rotation * new Quaternion(0, 180, 0, 0));
+                Vector3 rocketDestination = transform.forward * 10;
+                Rocket.transform.DOMove(rocketDestination, TimeRocket + 6f);
+            }
 
+           
         }
         else if (Input.GetButtonUp("Fire1"))
         {
@@ -317,6 +334,7 @@ public class GunController : MonoBehaviour
 
     private void RocketImpact(Vector3 _impactPos)
     {
+        attachedRocketModel.SetActive(true);
         PhysicsExplosion(_impactPos);
         shootedRocket = false;
         explosionEffect.transform.position = _impactPos;
@@ -337,7 +355,8 @@ public class GunController : MonoBehaviour
             if (hitCollider.GetComponent<Rigidbody>() != null)
             {
                 hitCollider.GetComponent<Rigidbody>().isKinematic = false;
-                hitCollider.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, _impactPos, explosionRadius, .02f, ForceMode.Impulse); 
+                hitCollider.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, _impactPos,
+                explosionRadius, .02f, ForceMode.Impulse); 
             }
 
             if (hitCollider.GetComponent<EnemyController>())
