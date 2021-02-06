@@ -61,8 +61,8 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator Timer()
     {
         //CheckGun();
-        yield return new WaitForSeconds(1);
-        CheckGun();
+        yield return new WaitForSeconds(1000000);
+        SpawnEnemy();
 
     }
 
@@ -70,10 +70,10 @@ public class EnemySpawner : MonoBehaviour
     ////Quando Enemy muore chiamo enemySpawner.SpawnEnemy()
     ////Fare CheckEnemy (come checkGun ma con gli zombie)
 
-    public void SpawnEnemy()
+    public void SpawnEnemy() 
     {
        StartCoroutine("Timer");
-        CheckGun();
+       CheckGun();
     }
 
     

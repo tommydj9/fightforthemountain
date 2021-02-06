@@ -235,6 +235,7 @@ public class PlayerMovement : MonoBehaviour
             if (i == SlotGunIndex)
             {
                 UImanager.ArrayChrossair[i].enabled = true;
+                transform.localScale = Vector3.zero;
             }
             else
             {
