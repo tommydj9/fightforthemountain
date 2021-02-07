@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
 
     public GameObject head;
     public EnemySpawner spawn;
+    public int vmoney;
+    public UIManager uimanager;
 
     public void Die()
     {
@@ -80,6 +82,8 @@ public class EnemyController : MonoBehaviour
 
         if (life <= 0f)
         {
+            vmoney++;
+            uimanager.SetUiV_MONEY(vmoney.ToString());
             animator.SetTrigger("death");
             agent.velocity = Vector3.zero;
             spawn.SpawnEnemy();
