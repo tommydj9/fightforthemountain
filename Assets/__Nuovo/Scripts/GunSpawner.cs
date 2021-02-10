@@ -8,23 +8,23 @@ public class GunSpawner : MonoBehaviour
     public float spawnRate;
     public Transform[] SpawnGunPosition;
     public GunController[] Guns;
+    private bool canSpawnGun;
     
   
     // Start is called before the first frame update
     void Start()
     {
-        
+        canSpawnGun = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-           StartCoroutine("Timer");
+        if (canSpawnGun == true)
+        {
+            StartCoroutine("Timer");
 
-            
-        //}
+        }
     }
 
     public void CheckGun()
@@ -37,8 +37,8 @@ public class GunSpawner : MonoBehaviour
             if(Guns[i].probilitySpawn > rnd)
             {
                 Debug.Log(Guns[i].name);
-                RandomSpawn(rndPosition);
-
+                RandomSpawn(rndPosition,i);
+                break;
             }
             else
             {
@@ -47,29 +47,36 @@ public class GunSpawner : MonoBehaviour
             }
 
         }
+        
+       
     }
 
-    public void RandomSpawn(int SpawnValue)
+    public void RandomSpawn(int SpawnValue, int index)
     {
+        
         Transform currentSpawn = SpawnGunPosition[SpawnValue];
-        Instantiate(Guns[0].prefabGun, currentSpawn.position, Quaternion.identity);
+        Debug.Log("random spawn");
+        Instantiate(Guns[index].prefabGun, currentSpawn.position, Quaternion.identity);
     }
 
-    
-
-    //IEnumerator Timer()
-    //{
-    //    //yield return new WaitForSeconds(3);
-    //    //CheckGun();
-
-    //}
 
 
+    IEnumerator Timer()
+    {
+        canSpawnGun = false;
+        yield return new WaitForSeconds(3);
+        canSpawnGun = true;
 
-    //public void SpawnEnemy()
-    //{
-    //   StartCoroutine("Timer");
-    //}
+        CheckGun();
+
+    }
+
+
+
+    public void SpawnEnemy()
+    {
+        StartCoroutine("Timer");
+    }
 
 
 
