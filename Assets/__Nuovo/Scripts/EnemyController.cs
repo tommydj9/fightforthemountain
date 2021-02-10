@@ -31,6 +31,17 @@ public class EnemyController : MonoBehaviour
 
     public GameObject head;
     public EnemySpawner spawn;
+    private bool canSpawn;
+
+    private void Start()
+    {
+        canSpawn = true;
+    }
+
+    private void OnDisable()
+    {
+        canSpawn = true;
+    }
 
     public void Die()
     {
@@ -82,7 +93,11 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetTrigger("death");
             agent.velocity = Vector3.zero;
-            spawn.SpawnEnemy();
+
+                spawn.SpawnEnemy();
+
+
+            canSpawn = false;
             Destroy(gameObject, 3.5f);
 
         }

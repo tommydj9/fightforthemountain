@@ -8,7 +8,7 @@ public class EnemyFOV : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<OldPlayerController>())
+        if (other.GetComponent<PlayerController>())
         {
             enemy.playerFound = true;
         }

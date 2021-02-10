@@ -271,17 +271,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 177638383}
-  life: 1000
+  life: 250
   maxWalkSpeed: 3.5
   maxRunSpeed: 5
-  velRatio: 1
+  maxSpeed: 0
+  currentSpeed: 0
+  velocityRatio: 0
   lerpForce: 3
+  distance: 0
+  probabilitySpawn: 0
+  prefabEnemy: {fileID: 0}
   agent: {fileID: 260318409}
-  obstacle: {fileID: 0}
   positionReferencePlayer: {fileID: 0}
   playerFound: 0
-  distanceToAttack: 1
   head: {fileID: 4657286275000530942}
+  spawn: {fileID: 0}
 --- !u!195 &260318409
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -8,44 +8,50 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate;
     public Transform[] SpawnGunPosition;
     public EnemyController[] enemy;
+    private bool canSpawnEnemy;
 
 
-     
+
     void Start()
     {
+        canSpawnEnemy = true;
+    }
 
-      }
 
-     
     void Update()
     {
         //if (Input.GetKeyDown(KeyCode.P))
         //{
-        
+
+
 
 
     }
 
-    public void CheckGun()
+    public void CheckEnemy()
     {
-        float rnd = Random.Range(0f, 1f);
-        int rndPosition = Random.Range(0, SpawnGunPosition.Length - 1);
-        Debug.Log(rnd + " " + rndPosition);
-
-        for (int i = 0; i < enemy.Length; i++)
+        if (canSpawnEnemy == true)
         {
-            if (enemy[i].probabilitySpawn > rnd)
+
+            float rnd = Random.Range(0f, 1f);
+            int rndPosition = Random.Range(0, SpawnGunPosition.Length - 1);
+            Debug.Log(rnd + " " + rndPosition);
+
+            for (int i = 0; i < enemy.Length; i++)
             {
-                Debug.Log(enemy[i].name);
-                RandomSpawn(rndPosition);
+                if (enemy[i].probabilitySpawn > rnd)
+                {
+                    Debug.Log(enemy[i].name);
+                    RandomSpawn(rndPosition);
+
+                }
+                else
+                {
+                    Debug.Log("Null");
+
+                }
 
             }
-            else
-            {
-                Debug.Log("Null");
-
-            }
-
         }
     }
 
@@ -53,6 +59,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Transform currentSpawn = SpawnGunPosition[SpawnValue];
         Instantiate(enemy[0].prefabEnemy, currentSpawn.position, Quaternion.identity);
+
     }
 
 
@@ -61,8 +68,15 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator Timer()
     {
         //CheckGun();
-        yield return new WaitForSeconds(1000000);
-        SpawnEnemy();
+        if (canSpawnEnemy == true)
+        {
+            CheckEnemy();
+        }
+        canSpawnEnemy = false;
+        yield return new WaitForSeconds(3);
+        canSpawnEnemy = true;
+        
+        
 
     }
 
@@ -70,13 +84,12 @@ public class EnemySpawner : MonoBehaviour
     ////Quando Enemy muore chiamo enemySpawner.SpawnEnemy()
     ////Fare CheckEnemy (come checkGun ma con gli zombie)
 
-    public void SpawnEnemy() 
+    public void SpawnEnemy()
     {
-       StartCoroutine("Timer");
-       CheckGun();
+        StartCoroutine("Timer");
     }
 
-    
+
 
 
 }

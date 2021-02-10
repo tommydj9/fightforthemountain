@@ -277,6 +277,7 @@ public class GunController : MonoBehaviour
                 case DamageController.BodyParts.head:
                     damageController.Hit(headDamage);
                     damageController.enemy.head.transform.localScale = Vector3.zero;
+                    damageController.enemy.playerFound = true;
 
                     Quaternion sistemaRotation = Quaternion.identity;
                     sistemaRotation.eulerAngles = new Vector3(-90, 0, 0);
