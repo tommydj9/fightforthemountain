@@ -1763,7 +1763,7 @@ MonoBehaviour:
     type: 3}
   hasRockets: 1
   explosionDamage: 100
-  TimeRocket: 0.8
+  RocketSpeed: 30
   explosionRadius: 5.07
   explosionForce: 7.04
   RocketPrefab: {fileID: 1835727468}
@@ -2057,7 +2057,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &893688159
 Canvas:
   m_ObjectHideFlags: 0
@@ -2834,7 +2833,7 @@ MonoBehaviour:
   prefabGun: {fileID: 0}
   hasRockets: 0
   explosionDamage: 0
-  TimeRocket: 0
+  RocketSpeed: 0
   explosionRadius: 0
   explosionForce: 0
   RocketPrefab: {fileID: 0}
@@ -2915,7 +2914,7 @@ MonoBehaviour:
     type: 3}
   hasRockets: 0
   explosionDamage: 0
-  TimeRocket: 0
+  RocketSpeed: 0
   explosionRadius: 0
   explosionForce: 0
   RocketPrefab: {fileID: 0}
@@ -3015,7 +3014,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1224508380 stripped
@@ -4193,6 +4191,32 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1888840574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1798884950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5438254039853536040, guid: 4613abf811e55224da29e403fad2d5f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5438254038301134168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1798884953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798884950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f57f40a23bc04e40b28f9c2550d1676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodTexture: {fileID: 2800000, guid: 0bb883d8168a8c745b63496a588e169a, type: 3}
+  _bloodNormalMap: {fileID: 2800000, guid: 6ec15d8ea8745bd4fb8aa7a76282fe30, type: 3}
+  _bloodAmount: 0
+  _minBloodAmount: 0
+  _distortion: 0.5
+  _autoFade: 1
+  _fadeSpeed: 0.05
+  _shader: {fileID: 4800000, guid: 63c98ab25ef923640939173a2164c930, type: 3}
 --- !u!1001 &1835346071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4458,7 +4482,7 @@ MonoBehaviour:
     type: 3}
   hasRockets: 0
   explosionDamage: 0
-  TimeRocket: 0
+  RocketSpeed: 0
   explosionRadius: 0
   explosionForce: 0
   RocketPrefab: {fileID: 0}
@@ -4664,7 +4688,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1978058476
@@ -5521,6 +5544,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: SlotGun.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: animator.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: gun
       value: 
       objectReference: {fileID: 0}
@@ -5538,16 +5571,6 @@ PrefabInstance:
         type: 3}
       propertyPath: CurrentAnimator
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: SlotGun.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: animator.Array.size
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -5599,6 +5622,16 @@ PrefabInstance:
       propertyPath: animator.Array.data[4]
       value: 
       objectReference: {fileID: 1792487318}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: cameraBloodEffect
+      value: 
+      objectReference: {fileID: 1798884953}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: forzaSalto
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229236, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_Name
@@ -5618,6 +5651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: guns.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -5676,11 +5714,6 @@ PrefabInstance:
         type: 3}
       propertyPath: probilitySpawn
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: guns.Array.size
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}

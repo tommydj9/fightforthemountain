@@ -26,5 +26,13 @@ public class DamageCollider : MonoBehaviour
         damageCollider.enabled = false;
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            other.GetComponent<PlayerController>().ReceiveDamage(damage);
+        }
+    }
+
+
 }

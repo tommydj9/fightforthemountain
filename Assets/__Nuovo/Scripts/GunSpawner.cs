@@ -31,7 +31,6 @@ public class GunSpawner : MonoBehaviour
     {
        float rnd =  Random.Range(0f,1f);
        int rndPosition = Random.Range(0, SpawnGunPosition.Length -1);
-       Debug.Log(rnd + " " + rndPosition);
 
         for (int i = 0; i < Guns.Length; i++)
         {
@@ -58,29 +57,20 @@ public class GunSpawner : MonoBehaviour
 
     
 
-    IEnumerator Timer()
-    {
-        //CheckGun();
-        yield return new WaitForSeconds(3);
-        CheckGun();
-        yield return new WaitForSeconds(3);
-        CheckGun();
-        yield return new WaitForSeconds(3);
-        CheckGun();
+    //IEnumerator Timer()
+    //{
+    //    //yield return new WaitForSeconds(3);
+    //    //CheckGun();
+
+    //}
 
 
-    }
 
-    //Dentro EnemyController deve esserci la referenza a EnemySpawner
-    //Quando Enemy muore chiamo enemySpawner.SpawnEnemy()
-    //Fare CheckEnemy (come checkGun ma con gli zombie)
+    //public void SpawnEnemy()
+    //{
+    //   StartCoroutine("Timer");
+    //}
 
-    public void SpawnEnemy()
-    {
-       StartCoroutine("Timer");
-    }
-
-    //StartCoroutine("Timer");
 
 
 }

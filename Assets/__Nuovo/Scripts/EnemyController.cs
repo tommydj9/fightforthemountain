@@ -84,7 +84,6 @@ public class EnemyController : MonoBehaviour
             agent.velocity = Vector3.zero;
             spawn.SpawnEnemy();
             Destroy(gameObject, 3.5f);
-            //Destroy(transform.gameObject, 10f);
 
         }
 
