@@ -10,7 +10,7 @@ public class GunController : MonoBehaviour
 {
 
     //Inspector
-    public PlayerMovement player;
+    public PlayerController player;
     public float damage;
     public float distance;
     public Camera mainCamera;
@@ -40,7 +40,7 @@ public class GunController : MonoBehaviour
     [Header("Rockets Information")]
     public bool hasRockets;
     public float explosionDamage;
-    public float TimeRocket;
+    public float RocketSpeed;
     public float explosionRadius;
     public float explosionForce;
     public GameObject RocketPrefab;
@@ -170,7 +170,8 @@ public class GunController : MonoBehaviour
                         fireEffect.transform.localPosition = Vector3.zero;
                         fireEffect.transform.localScale = Vector3.one;
                         fireEffect.Play();
-                        Rocket.transform.DOMove(RocketPosition, TimeRocket).OnComplete(() => RocketImpact(RocketPosition)); 
+                        float distance = Vector3.Distance(Rocket.transform.position, RocketPosition);
+                        Rocket.transform.DOMove(RocketPosition, distance/RocketSpeed).OnComplete(() => RocketImpact(RocketPosition)); 
                         
                       
                     }
@@ -193,9 +194,12 @@ public class GunController : MonoBehaviour
             else
             {
                 Debug.Log("entry");
-                Rocket = Instantiate(RocketPrefab, rocketStartPosition.transform.position, transform.rotation * new Quaternion(0, 180, 0, 0));
-                Vector3 rocketDestination = transform.forward * 10;
-                Rocket.transform.DOMove(rocketDestination, TimeRocket + 6f);
+                if (Rocket != null)
+                {
+                    Rocket = Instantiate(RocketPrefab, rocketStartPosition.transform.position, transform.rotation * new Quaternion(0, 180, 0, 0));
+                    Vector3 rocketDestination = transform.forward * 10;
+                    Rocket.transform.DOMove(rocketDestination, RocketSpeed + 6f);
+                }
             }
 
            

@@ -14,7 +14,7 @@ public class CharacterPanel : MonoBehaviour {
 	public Slider motionSpeed;
 
 	Actions actions;
-	PlayerController controller;
+	OldPlayerController controller;
 	Camera[] cameras;
 
 	void Start () {
@@ -23,9 +23,9 @@ public class CharacterPanel : MonoBehaviour {
 
 	void Initialize () {
 		actions = character.GetComponent<Actions> ();
-		controller = character.GetComponent<PlayerController> ();
+		controller = character.GetComponent<OldPlayerController> ();
 
-		foreach (PlayerController.Arsenal a in controller.arsenal)
+		foreach (OldPlayerController.Arsenal a in controller.arsenal)
 			CreateWeaponButton(a.name);
 
 		CreateActionButton("Stay");
