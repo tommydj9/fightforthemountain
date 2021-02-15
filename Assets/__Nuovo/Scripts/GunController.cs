@@ -329,6 +329,7 @@ public class GunController : MonoBehaviour
                                                                           Random.Range(-popupRandomIntensity.y, popupRandomIntensity.y), 0);
 
             GameObject popup = Instantiate(damagePopup, popupPosition, Quaternion.identity);
+            popup.transform.parent = _enemy.transform;
             popup.GetComponent<TextMesh>().text = _damage.ToString();
             popup.GetComponent<TextMesh>().color = _color;
 

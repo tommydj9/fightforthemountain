@@ -1145,7 +1145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1220251434455694, guid: fc60d6f96c1a24edcaefa2c200e2eef3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4144230316375096, guid: fc60d6f96c1a24edcaefa2c200e2eef3, type: 3}
       propertyPath: m_RootOrder
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   gunImage: {fileID: 415854672}
   gunImageSelected: {fileID: 1647438501}
   CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
-  probilitySpawn: 0.5
+  probilitySpawn: 1
   prefabGun: {fileID: 919132149155446097, guid: d220e5b874244b045a55314f40ab45d2,
     type: 3}
   hasRockets: 1
@@ -2108,6 +2108,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &893688159
 Canvas:
   m_ObjectHideFlags: 0
@@ -2227,6 +2228,7 @@ MonoBehaviour:
   - {fileID: 1284154062}
   enemy:
   - {fileID: 620539138}
+  currentZombieSpawn: 0
 --- !u!4 &945365953
 Transform:
   m_ObjectHideFlags: 0
@@ -2831,7 +2833,7 @@ GameObject:
   - component: {fileID: 1153001409}
   - component: {fileID: 1153001410}
   m_Layer: 0
-  m_Name: pump (1)
+  m_Name: sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3071,6 +3073,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1224508380 stripped
@@ -5004,6 +5007,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1978058476
@@ -5567,6 +5571,9 @@ MonoBehaviour:
   - {fileID: 1284154062}
   Guns:
   - {fileID: 1224508381}
+  - {fileID: 1898813826}
+  - {fileID: 1170646682}
+  - {fileID: 633686320}
 --- !u!4 &2144887567
 Transform:
   m_ObjectHideFlags: 0
@@ -5588,6 +5595,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 260318409, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 260318409, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1874315984, guid: a369e76ada49ed3478dba807fdbdf945, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -5865,16 +5880,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
-      propertyPath: SlotGun.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: animator.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
       propertyPath: gun
       value: 
       objectReference: {fileID: 0}
@@ -5890,8 +5895,28 @@ PrefabInstance:
       objectReference: {fileID: 893688161}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: forzaSalto
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: CurrentAnimator
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: cameraBloodEffect
+      value: 
+      objectReference: {fileID: 1798884953}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: SlotGun.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: animator.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -5943,16 +5968,6 @@ PrefabInstance:
       propertyPath: animator.Array.data[4]
       value: 
       objectReference: {fileID: 1792487318}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: cameraBloodEffect
-      value: 
-      objectReference: {fileID: 1798884953}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: forzaSalto
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229236, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_Name
@@ -5972,11 +5987,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: guns.Array.size
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -6034,7 +6044,12 @@ PrefabInstance:
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: probilitySpawn
-      value: 0.5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: guns.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}

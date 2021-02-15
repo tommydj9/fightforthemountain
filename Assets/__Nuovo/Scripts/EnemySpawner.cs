@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] SpawnGunPosition;
     public EnemyController[] enemy;
     private bool canSpawnEnemy;
+    private int numberToEnemySpawn;
+    public int currentZombieSpawn;
 
 
 
@@ -59,8 +61,11 @@ public class EnemySpawner : MonoBehaviour
     {
         Transform currentSpawn = SpawnGunPosition[SpawnValue];
         Instantiate(enemy[0].prefabEnemy, currentSpawn.position, Quaternion.identity);
+        
 
     }
+
+    
 
 
 
@@ -68,9 +73,10 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator Timer()
     {
         //CheckGun();
-        if (canSpawnEnemy == true)
+        if (numberToEnemySpawn > 0)
         {
             CheckEnemy();
+            numberToEnemySpawn--;
         }
         canSpawnEnemy = false;
         yield return new WaitForSeconds(3);
@@ -79,14 +85,20 @@ public class EnemySpawner : MonoBehaviour
         
 
     }
-
+     
     ////Dentro EnemyController deve esserci la referenza a EnemySpawner
     ////Quando Enemy muore chiamo enemySpawner.SpawnEnemy()
     ////Fare CheckEnemy (come checkGun ma con gli zombie)
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(int _maxToSpawn, int _currentZombieNow)
     {
         StartCoroutine("Timer");
+        currentZombieSpawn = _currentZombieNow;
+        numberToEnemySpawn = _maxToSpawn - currentZombieSpawn;
+
+        
+
+
     }
 
 

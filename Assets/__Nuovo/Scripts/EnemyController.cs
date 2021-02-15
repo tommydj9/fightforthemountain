@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
             uimanager.SetUiV_MONEY(vmoney.ToString());
             animator.SetTrigger("death");
             agent.velocity = Vector3.zero;
-            spawn.SpawnEnemy();
+            //spawn.SpawnEnemy();
             Destroy(gameObject, 3.5f);
 
         }
