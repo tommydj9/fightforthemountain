@@ -33,13 +33,12 @@ public class EnemyController : MonoBehaviour
     public EnemySpawner spawn;
     public int vmoney;
     public UIManager uimanager;
+    public GameObject coinController;
 
     public void Die()
     {
 
-
         //Aggiungere shader dissolvenza
-        
         //transform.localScale = Vector3.zero;
 
     }
@@ -82,11 +81,12 @@ public class EnemyController : MonoBehaviour
 
         if (life <= 0f)
         {
-            vmoney++;
-            uimanager.SetUiV_MONEY(vmoney.ToString());
+            //vmoney++;
+            //uimanager.SetUiV_MONEY(vmoney.ToString());
             animator.SetTrigger("death");
             agent.velocity = Vector3.zero;
             //spawn.SpawnEnemy();
+            Instantiate(coinController, transform.position, Quaternion.identity);
             Destroy(gameObject, 3.5f);
 
         }

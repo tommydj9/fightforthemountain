@@ -35,12 +35,15 @@ public class PlayerController : MonoBehaviour
     [Header("Camera Effects")]
     public CameraBloodEffect cameraBloodEffect;
 
+    private float totalCoins;
+
 
     private void Awake()
     {
         Cursor.visible = false;
         ChangeGun(0);
         maxLife = life;
+        totalCoins = 0;
 
         UImanager.crosshair = SlotGun[SlotGunIndex]
             .GetComponent<GunController>().CrosshairImage;
@@ -214,6 +217,11 @@ public class PlayerController : MonoBehaviour
         }
      
 
+    }
+
+    public void UpdateCoinsValue(float _value)
+    {
+        totalCoins += _value;
     }
 
     public void ChangeCrosshair(Image _emptyChrosshair)
