@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 {
 
     public Animator animator;
+    public EnemySpawner spawner;
 
     [Range(0,1000)]
     public float life = 250;
@@ -30,17 +31,31 @@ public class EnemyController : MonoBehaviour
 
 
     public GameObject head;
-    public EnemySpawner spawn;
     public int vmoney;
     public UIManager uimanager;
     public GameObject coinController;
 
+    private bool isDead = false;
+
     public void Die()
     {
+        
+        if (!isDead)
+        {
+            isDead = true;
+            Instantiate(coinController, transform.position, Quaternion.identity);
+            spawner.enemiesKilled++;
+        }
+
+        animator.SetTrigger("death");
+        agent.velocity = Vector3.zero;
+        
+        Destroy(gameObject, 3.5f);
+
+
 
         //Aggiungere shader dissolvenza
         //transform.localScale = Vector3.zero;
-
     }
 
     public void Update()
@@ -81,14 +96,7 @@ public class EnemyController : MonoBehaviour
 
         if (life <= 0f)
         {
-            //vmoney++;
-            //uimanager.SetUiV_MONEY(vmoney.ToString());
-            animator.SetTrigger("death");
-            agent.velocity = Vector3.zero;
-            //spawn.SpawnEnemy();
-            Instantiate(coinController, transform.position, Quaternion.identity);
-            Destroy(gameObject, 3.5f);
-
+            Die();
         }
 
     }

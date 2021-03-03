@@ -20,7 +20,7 @@ public class RoundManager : MonoBehaviour
         zombiePerRound = zombieFirstRound;
 
 
-        enemySpawner.SpawnEnemy(maxZombieInScene, currentZombieAlive);
+        //enemySpawner.SpawnEnemy(maxZombieInScene, currentZombieAlive);
     }
 
     // Update is called once per frame

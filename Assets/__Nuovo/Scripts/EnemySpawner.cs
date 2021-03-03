@@ -1,107 +1,105 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float spawnTimer;
-    public float spawnRate;
-    public Transform[] SpawnGunPosition;
-    public EnemyController[] enemy;
-    private bool canSpawnEnemy;
-    private int numberToEnemySpawn;
-    public int currentZombieSpawn;
+    #region OldStuff
+    //public EnemyController enemy;
+
+    //private float startTime;
 
 
+    //private void Start()
+    //{
+    //    startTime = Time.time;
+    //}
 
-    void Start()
+    //void SpawnEnemy(int _enemyCounter, float _spawnTime, bool _enemiesAreSpawning)
+    //{
+    //    StartCoroutine(SpawnEnemyCoroutine(_enemyCounter, _spawnTime, _enemiesAreSpawning)); 
+    //}
+
+    //IEnumerator SpawnEnemyCoroutine(int _enemyCounter, float _spawnTime, bool _enemiesAreSpawning)
+    //{
+    //    float currentEnemiesSpawned = 0;
+
+    //    while (_enemiesAreSpawning)
+    //    {
+    //        Instantiate(enemy);
+    //    }
+    //}
+
+    #endregion
+
+    public int enemyFirstSpawnAmount;
+    private int enemySpawnAmount;
+
+    int waveNumber = 0;
+
+    [HideInInspector]
+    public int enemyToSpawn = 0;
+    [HideInInspector]
+    public int enemiesKilled = 0;
+
+    public GameObject[] spawnerPoints;
+    public GameObject enemy;
+
+    private void Start()
     {
-        canSpawnEnemy = true;
-    }
-
-
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.P))
+        //for (int i = 0; i < spawnerPoints.Length; i++)
         //{
+        //    spawnerPoints[i] = transform.GetChild(i).gameObject;
+        //}
 
-
-
-
+        StartWave();
+        enemy.transform.gameObject.SetActive(false);
     }
 
-    public void CheckEnemy()
+    private void Update()
     {
-        if (canSpawnEnemy == true)
+
+        Debug.LogFormat("EnemiesKilles: {0} --- enemySpawnAmount: {1}", enemiesKilled, enemySpawnAmount);
+
+        if (enemiesKilled >= enemySpawnAmount)
         {
-
-            float rnd = Random.Range(0f, 1f);
-            int rndPosition = Random.Range(0, SpawnGunPosition.Length - 1);
-            Debug.Log(rnd + " " + rndPosition);
-
-            for (int i = 0; i < enemy.Length; i++)
-            {
-                if (enemy[i].probabilitySpawn > rnd)
-                {
-                    Debug.Log(enemy[i].name);
-                    RandomSpawn(rndPosition);
-
-                }
-                else
-                {
-                    Debug.Log("Null");
-
-                }
-
-            }
+            NextWave();
         }
     }
 
-    public void RandomSpawn(int SpawnValue)
+    private void SpawnEnemy()
     {
-        Transform currentSpawn = SpawnGunPosition[SpawnValue];
-        Instantiate(enemy[0].prefabEnemy, currentSpawn.position, Quaternion.identity);
-        
-
+        int spawnerID = Random.Range(0, spawnerPoints.Length);
+        enemy.transform.gameObject.SetActive(true);
+        Instantiate(enemy, spawnerPoints[spawnerID].transform.position.normalized, spawnerPoints[spawnerID].transform.rotation);
+        enemy.transform.gameObject.SetActive(false);
     }
 
-    
-
-
-
-
-    IEnumerator Timer()
+    public void StartWave()
     {
-        //CheckGun();
-        if (numberToEnemySpawn > 0)
+        waveNumber = 1;
+        enemySpawnAmount = enemyFirstSpawnAmount;
+        enemiesKilled = 0;
+
+        for (int i = 0; i < enemySpawnAmount; i++)
         {
-            CheckEnemy();
-            numberToEnemySpawn--;
+            SpawnEnemy();
         }
-        canSpawnEnemy = false;
-        yield return new WaitForSeconds(3);
-        canSpawnEnemy = true;
-        
-        
 
     }
-     
-    ////Dentro EnemyController deve esserci la referenza a EnemySpawner
-    ////Quando Enemy muore chiamo enemySpawner.SpawnEnemy()
-    ////Fare CheckEnemy (come checkGun ma con gli zombie)
 
-    public void SpawnEnemy(int _maxToSpawn, int _currentZombieNow)
+    public void NextWave()
     {
-        StartCoroutine("Timer");
-        currentZombieSpawn = _currentZombieNow;
-        numberToEnemySpawn = _maxToSpawn - currentZombieSpawn;
+        waveNumber++;
+        enemySpawnAmount += 5;
+        enemiesKilled = 0;
 
-        
-
+        for (int i = 0; i < enemySpawnAmount; i++)
+        {
+            SpawnEnemy();
+        }
 
     }
-
-
 
 
 }

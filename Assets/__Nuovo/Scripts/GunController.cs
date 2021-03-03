@@ -74,6 +74,8 @@ public class GunController : MonoBehaviour
     //Public
     [HideInInspector]
     public DamageController damageController;
+    [HideInInspector]
+    public EnemyController enemy;
 
 
     //Private
@@ -86,7 +88,7 @@ public class GunController : MonoBehaviour
     int legsDamage = 60;
     float reloadTime = 0;
 
-    Vector3 popUpOffset = new Vector3(0,37f,100);
+    Vector3 popUpOffset = new Vector3(0,7f, 5);
     Vector3 popupRandomIntensity = new Vector3(17f, 7f, 0);
 
     private void Awake()
@@ -272,6 +274,7 @@ public class GunController : MonoBehaviour
         try
         {
             damageController = _hit.transform.GetComponent<DamageController>();
+            enemy = _hit.transform.GetComponent<EnemyController>();
             switch (damageController.bodyParts)
             {
                 case DamageController.BodyParts.head:
@@ -285,26 +288,26 @@ public class GunController : MonoBehaviour
                     GameObject bloods = Instantiate(Sistema, damageController.enemy.head.transform.position, sistemaRotation);
                     bloods.transform.parent = damageController.transform;
 
-                    ShowDamage(headDamage,_hit.point,damageController.enemy,Color.blue);
+                    ShowDamage(headDamage,_hit.point,enemy,Color.blue);
 
                     break;
                 case DamageController.BodyParts.body:
                     damageController.Hit(bodyDamage);
-                    ShowDamage(bodyDamage, _hit.point, damageController.enemy, Color.blue);
+                    ShowDamage(bodyDamage, _hit.point, enemy, Color.blue);
 
 
                     break;
                 case DamageController.BodyParts.legs:
                     damageController.Hit(legsDamage);
-                    ShowDamage(legsDamage, _hit.point, damageController.enemy, Color.blue);
+                    ShowDamage(legsDamage, _hit.point, enemy, Color.blue);
                     break;
                 case DamageController.BodyParts.arms:
                     damageController.Hit(armsDamage);
-                    ShowDamage(armsDamage, _hit.point, damageController.enemy, Color.blue);
+                    ShowDamage(armsDamage, _hit.point, enemy, Color.blue);
                     break;
                 case DamageController.BodyParts.feet:
                     damageController.Hit(feetDamage);
-                    ShowDamage(feetDamage, _hit.point, damageController.enemy, Color.blue);
+                    ShowDamage(feetDamage, _hit.point, enemy, Color.blue);
                     break;
                 default:
                     break;
@@ -328,8 +331,9 @@ public class GunController : MonoBehaviour
             Vector3 popupPosition = _hitPoint + popUpOffset + new Vector3(Random.Range(-popupRandomIntensity.x, popupRandomIntensity.x), 
                                                                           Random.Range(-popupRandomIntensity.y, popupRandomIntensity.y), 0);
 
-            GameObject popup = Instantiate(damagePopup, popupPosition, Quaternion.identity);
+            GameObject popup = Instantiate(damagePopup, popupPosition, _enemy.transform.rotation);
             popup.transform.parent = _enemy.transform;
+            popup.transform.localPosition = popupPosition;
             popup.GetComponent<TextMesh>().text = _damage.ToString();
             popup.GetComponent<TextMesh>().color = _color;
 
