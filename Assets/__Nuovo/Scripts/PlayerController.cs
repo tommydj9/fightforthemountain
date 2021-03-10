@@ -53,7 +53,10 @@ public class PlayerController : MonoBehaviour
         {
             UImanager.ArrayImage[i].enabled = false;
         }
-        
+
+       
+
+
 
     }
 

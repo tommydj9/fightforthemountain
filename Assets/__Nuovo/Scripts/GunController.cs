@@ -113,20 +113,38 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
+        Mira();
         Shoot();
         Reload();
         playerAnimator = player.CurrentAnimator;
     }
 
+    public void Mira()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("ok va");
+            playerAnimator.SetBool("Sight", true);
+        }
 
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            playerAnimator.SetBool("Sight", false);
+            playerAnimator.SetBool("Normal", true);
+        }
+    }
     public void Shoot()
     {
+        
+
         if (Input.GetButton("Fire1")  && currentCartdrigeSize == 0) {
             //Aggiungere suono caricatore vuoto
             playerAnimator.SetInteger("Fire", -1);
             playerAnimator.SetInteger("Movement", 0);
 
         }
+        
 
         if (Input.GetButton("Fire1") && fireRatioTime <= Time.time && currentCartdrigeSize > 0)
         {

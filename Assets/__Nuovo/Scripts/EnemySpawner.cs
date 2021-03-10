@@ -91,7 +91,7 @@ public class EnemySpawner : MonoBehaviour
     public void NextWave()
     {
         waveNumber++;
-        enemySpawnAmount += 5;
+        enemySpawnAmount *= waveNumber;
         enemiesKilled = 0;
 
         for (int i = 0; i < enemySpawnAmount; i++)
