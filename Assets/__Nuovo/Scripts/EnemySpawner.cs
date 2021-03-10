@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
 
-        Debug.LogFormat("EnemiesKilles: {0} --- enemySpawnAmount: {1}", enemiesKilled, enemySpawnAmount);
+        //Debug.LogFormat("EnemiesKilles: {0} --- enemySpawnAmount: {1}", enemiesKilled, enemySpawnAmount);
 
         if (enemiesKilled >= enemySpawnAmount)
         {

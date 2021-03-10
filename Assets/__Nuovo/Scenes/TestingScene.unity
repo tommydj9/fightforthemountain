@@ -1711,7 +1711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &633686320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1749,6 +1749,7 @@ MonoBehaviour:
   probilitySpawn: 1
   prefabGun: {fileID: 919132149155446097, guid: d220e5b874244b045a55314f40ab45d2,
     type: 3}
+  TimeCrosshair: 0
   hasRockets: 1
   explosionDamage: 100
   RocketSpeed: 30
@@ -3111,6 +3112,7 @@ MonoBehaviour:
   CrosshairImage: {fileID: 0}
   probilitySpawn: 0
   prefabGun: {fileID: 0}
+  TimeCrosshair: 0
   hasRockets: 0
   explosionDamage: 0
   RocketSpeed: 0
@@ -3170,7 +3172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 643645531}
   damage: 40
-  distance: 10
+  distance: 100
   mainCamera: {fileID: 2127541791}
   damagePopup: {fileID: 9112191200250776838, guid: dfcd552ffc0904d45971b2940f78b028,
     type: 3}
@@ -3193,6 +3195,7 @@ MonoBehaviour:
   probilitySpawn: 0.5
   prefabGun: {fileID: 919132149155446097, guid: bafd7b1e1736b4643840c4411b8e8979,
     type: 3}
+  TimeCrosshair: 0
   hasRockets: 0
   explosionDamage: 0
   RocketSpeed: 0
@@ -4665,6 +4668,7 @@ MonoBehaviour:
   probilitySpawn: 0.5
   prefabGun: {fileID: 919132149155446097, guid: fdfbbcbbb73d8654e8619ba01a9b7bac,
     type: 3}
+  TimeCrosshair: 0
   hasRockets: 0
   explosionDamage: 0
   RocketSpeed: 0
@@ -5886,6 +5890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: noAmmoSound
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: TimeCrosshair
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}

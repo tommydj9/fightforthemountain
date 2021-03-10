@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     [Header("Camera Effects")]
     public CameraBloodEffect cameraBloodEffect;
 
-    private float totalCoins;
+    [HideInInspector]
+    public float totalCoins;
 
 
     private void Awake()
@@ -234,7 +235,7 @@ public class PlayerController : MonoBehaviour
             if (i == SlotGunIndex)
             {
                 UImanager.ArrayChrossair[i].enabled = true;
-                transform.localScale = Vector3.zero;
+                
             }
             else
             {

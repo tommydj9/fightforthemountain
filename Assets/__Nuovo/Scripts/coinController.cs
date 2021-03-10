@@ -20,9 +20,10 @@ public class coinController : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
-            other.GetComponent<PlayerController>().UpdateCoinsValue(value);
-            other.GetComponent<PlayerController>().UImanager.V_MONEY.text += value; 
-            PlayCoinAnimation_UI();
+            PlayerController player = other.GetComponent<PlayerController>();
+
+            player.UpdateCoinsValue(value);
+            player.UImanager.V_MONEY.text = player.totalCoins.ToString();
             Destroy(transform.gameObject);
 
             // v-money += value -> 10 (valore intero)

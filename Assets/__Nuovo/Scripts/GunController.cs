@@ -36,6 +36,7 @@ public class GunController : MonoBehaviour
     [Range(0,1)]
     public float probilitySpawn;
     public GameObject prefabGun;
+    public float TimeCrosshair;
 
     [Header("Rockets Information")]
     public bool hasRockets;
@@ -51,6 +52,7 @@ public class GunController : MonoBehaviour
     public Transform rocketStartPosition;
     public GameObject attachedRocketModel;
     public float Rocketspeed;
+    
     
     
 
@@ -123,15 +125,19 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2"))
         {
+
+            UImanager.actualCrosshairImage.transform.DOScale(new Vector3(0.08f,0.14f,1f), TimeCrosshair);
             Debug.Log("ok va");
             playerAnimator.SetBool("Sight", true);
+            
         }
 
 
         if (Input.GetButtonUp("Fire2"))
         {
+            UImanager.actualCrosshairImage.transform.DOScale(new Vector3(0.22f, 0.39f, 1f), TimeCrosshair);
             playerAnimator.SetBool("Sight", false);
-            playerAnimator.SetBool("Normal", true);
+            
         }
     }
     public void Shoot()
@@ -289,10 +295,13 @@ public class GunController : MonoBehaviour
 
     public void checkShoot(RaycastHit _hit)
     {
+
+        //RAYCAST DELLE ARMI NON DETECTANO Né I NEMICI Né I MURI
         try
         {
             damageController = _hit.transform.GetComponent<DamageController>();
             enemy = _hit.transform.GetComponent<EnemyController>();
+            Instantiate(RocketPrefab, _hit.transform.position, Quaternion.identity);
             switch (damageController.bodyParts)
             {
                 case DamageController.BodyParts.head:
@@ -311,7 +320,8 @@ public class GunController : MonoBehaviour
                     break;
                 case DamageController.BodyParts.body:
                     damageController.Hit(bodyDamage);
-                    ShowDamage(bodyDamage, _hit.point, enemy, Color.blue);
+                  ShowDamage(bodyDamage, _hit.point, enemy, Color.blue);
+                    
 
 
                     break;
@@ -343,15 +353,17 @@ public class GunController : MonoBehaviour
 
     private void ShowDamage(float _damage, Vector3 _hitPoint, EnemyController _enemy, Color _color)
     {
+        Debug.Log("DamagePopUp" + damagePopup);
         if (damagePopup != null && _enemy.life > 0)
         {
             //Posizioni
-            Vector3 popupPosition = _hitPoint + popUpOffset + new Vector3(Random.Range(-popupRandomIntensity.x, popupRandomIntensity.x), 
+            Vector3 popupPosition = popUpOffset + new Vector3(Random.Range(-popupRandomIntensity.x, popupRandomIntensity.x), 
                                                                           Random.Range(-popupRandomIntensity.y, popupRandomIntensity.y), 0);
 
-            GameObject popup = Instantiate(damagePopup, popupPosition, _enemy.transform.rotation);
+            GameObject popup = Instantiate(damagePopup, popupPosition, Quaternion.identity);
+            popup.transform.rotation = transform.rotation;
             popup.transform.parent = _enemy.transform;
-            popup.transform.localPosition = popupPosition;
+            popup.transform.localPosition = Vector3.zero;
             popup.GetComponent<TextMesh>().text = _damage.ToString();
             popup.GetComponent<TextMesh>().color = _color;
 
