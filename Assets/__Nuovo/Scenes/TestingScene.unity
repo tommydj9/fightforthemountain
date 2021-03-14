@@ -2047,7 +2047,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &893688159
 Canvas:
   m_ObjectHideFlags: 0
@@ -3118,11 +3117,11 @@ MonoBehaviour:
   RocketSpeed: 0
   explosionRadius: 0
   explosionForce: 0
-  RocketPrefab: {fileID: 0}
-  explosionEffect: {fileID: 0}
-  fireEffect: {fileID: 0}
-  rocketStartPosition: {fileID: 0}
-  attachedRocketModel: {fileID: 0}
+  RocketPrefab: {fileID: 1835727468}
+  explosionEffect: {fileID: 1778573973}
+  fireEffect: {fileID: 1473195139}
+  rocketStartPosition: {fileID: 1153001409}
+  attachedRocketModel: {fileID: 1153001408}
   Rocketspeed: 0
   damageController: {fileID: 0}
   enemy: {fileID: 0}
@@ -3201,11 +3200,11 @@ MonoBehaviour:
   RocketSpeed: 0
   explosionRadius: 0
   explosionForce: 0
-  RocketPrefab: {fileID: 0}
-  explosionEffect: {fileID: 0}
-  fireEffect: {fileID: 0}
-  rocketStartPosition: {fileID: 0}
-  attachedRocketModel: {fileID: 0}
+  RocketPrefab: {fileID: 1835727468}
+  explosionEffect: {fileID: 1778573973}
+  fireEffect: {fileID: 1473195139}
+  rocketStartPosition: {fileID: 1170646681}
+  attachedRocketModel: {fileID: 1170646680}
   Rocketspeed: 0
   damageController: {fileID: 0}
   enemy: {fileID: 0}
@@ -3299,7 +3298,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1224508380 stripped
@@ -3320,6 +3318,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52139709f1c78f4789eb311d1e9226b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1224508382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5438254038835229237, guid: 4613abf811e55224da29e403fad2d5f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5438254038301134168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1249175249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4178885566209306, guid: 097258b7ecb14449b94b476f6e61732e,
@@ -4674,11 +4678,11 @@ MonoBehaviour:
   RocketSpeed: 0
   explosionRadius: 0
   explosionForce: 0
-  RocketPrefab: {fileID: 0}
-  explosionEffect: {fileID: 0}
-  fireEffect: {fileID: 0}
-  rocketStartPosition: {fileID: 0}
-  attachedRocketModel: {fileID: 0}
+  RocketPrefab: {fileID: 1835727468}
+  explosionEffect: {fileID: 1778573973}
+  fireEffect: {fileID: 1473195139}
+  rocketStartPosition: {fileID: 1898813827}
+  attachedRocketModel: {fileID: 1898813825}
   Rocketspeed: 0
   damageController: {fileID: 0}
   enemy: {fileID: 0}
@@ -4938,7 +4942,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1978058476
@@ -5741,6 +5744,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: SlotGun.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: animator.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: gun
       value: 
       objectReference: {fileID: 0}
@@ -5769,16 +5782,6 @@ PrefabInstance:
       propertyPath: cameraBloodEffect
       value: 
       objectReference: {fileID: 1798884953}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: SlotGun.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: animator.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: SlotGun.Array.data[0]
@@ -5851,6 +5854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: guns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 643645531}
@@ -5914,11 +5922,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
-      propertyPath: guns.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
       propertyPath: gunImageSelected
       value: 
       objectReference: {fileID: 1913094953}
@@ -5937,6 +5940,31 @@ PrefabInstance:
       propertyPath: reloadAnimationTime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: RocketPrefab
+      value: 
+      objectReference: {fileID: 1835727468}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 1778573973}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: fireEffect
+      value: 
+      objectReference: {fileID: 1473195139}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: rocketStartPosition
+      value: 
+      objectReference: {fileID: 1224508382}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: attachedRocketModel
+      value: 
+      objectReference: {fileID: 1224508380}
     - target: {fileID: 5438254039853536040, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_Layer

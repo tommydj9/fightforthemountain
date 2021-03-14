@@ -108,7 +108,10 @@ public class GunController : MonoBehaviour
     {
         
         playerAnimator.SetInteger("Movement", 0);
-        fireEffect.gameObject.SetActive(false);
+        if (hasRockets)
+        {
+            fireEffect.gameObject.SetActive(false);
+        }
 
     }
 
@@ -127,7 +130,6 @@ public class GunController : MonoBehaviour
         {
 
             UImanager.actualCrosshairImage.transform.DOScale(new Vector3(0.08f,0.14f,1f), TimeCrosshair);
-            Debug.Log("ok va");
             playerAnimator.SetBool("Sight", true);
             
         }
@@ -180,6 +182,13 @@ public class GunController : MonoBehaviour
                  * 
                  */
 
+                if (!hasRockets)
+                {
+                    GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    Destroy(hitEffectObject, 1f);
+                    checkShoot(hit);
+                }
+
                 if (hasRockets == true && !shootedRocket)
                 {
                     Vector3 RocketPosition = hit.point;
@@ -209,12 +218,7 @@ public class GunController : MonoBehaviour
 
 
                 //checkHit(hit);
-                if (!hasRockets)
-                {
-                    GameObject hitEffectObject = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                    Destroy(hitEffectObject, 1f);
-                    checkShoot(hit);
-                }
+                
 
             }
             else
@@ -269,9 +273,6 @@ public class GunController : MonoBehaviour
             // muniz = 3
             // currentC = 1
             // current = 4
-
-            
-
         }
         else
         {
@@ -296,15 +297,17 @@ public class GunController : MonoBehaviour
     public void checkShoot(RaycastHit _hit)
     {
 
-        //RAYCAST DELLE ARMI NON DETECTANO Né I NEMICI Né I MURI
         try
         {
-            damageController = _hit.transform.GetComponent<DamageController>();
+            damageController = _hit.transform.GetComponentInChildren<DamageController>();
             enemy = _hit.transform.GetComponent<EnemyController>();
-            Instantiate(RocketPrefab, _hit.transform.position, Quaternion.identity);
+            
             switch (damageController.bodyParts)
             {
+
                 case DamageController.BodyParts.head:
+                    Debug.Log("HEAD");
+                    
                     damageController.Hit(headDamage);
                     damageController.enemy.head.transform.localScale = Vector3.zero;
                     damageController.enemy.playerFound = true;
@@ -315,15 +318,12 @@ public class GunController : MonoBehaviour
                     GameObject bloods = Instantiate(Sistema, damageController.enemy.head.transform.position, sistemaRotation);
                     bloods.transform.parent = damageController.transform;
 
-                    ShowDamage(headDamage,_hit.point,enemy,Color.blue);
-
+                    ShowDamage(headDamage, _hit.point, enemy, Color.blue);
                     break;
                 case DamageController.BodyParts.body:
+                    Debug.Log("CHECK SHOOT: " + bodyDamage);
                     damageController.Hit(bodyDamage);
-                  ShowDamage(bodyDamage, _hit.point, enemy, Color.blue);
-                    
-
-
+                    ShowDamage(bodyDamage, _hit.point, enemy, Color.blue);
                     break;
                 case DamageController.BodyParts.legs:
                     damageController.Hit(legsDamage);
@@ -338,6 +338,7 @@ public class GunController : MonoBehaviour
                     ShowDamage(feetDamage, _hit.point, enemy, Color.blue);
                     break;
                 default:
+                    Debug.Log("damageController: " + damageController.bodyParts);
                     break;
             }
 
@@ -347,15 +348,16 @@ public class GunController : MonoBehaviour
             Debug.LogWarning("Not enemy");
         }
 
-
-
     }
+
+
+    
 
     private void ShowDamage(float _damage, Vector3 _hitPoint, EnemyController _enemy, Color _color)
     {
-        Debug.Log("DamagePopUp" + damagePopup);
         if (damagePopup != null && _enemy.life > 0)
         {
+            Debug.Log("DamagePopUp: " + damagePopup);
             //Posizioni
             Vector3 popupPosition = popUpOffset + new Vector3(Random.Range(-popupRandomIntensity.x, popupRandomIntensity.x), 
                                                                           Random.Range(-popupRandomIntensity.y, popupRandomIntensity.y), 0);
@@ -369,7 +371,10 @@ public class GunController : MonoBehaviour
 
             Destroy(popup, 2f);
 
-        } 
+        }else if(damagePopup == null)
+        {
+            Debug.Log("DamagePopUp is null");
+        }
     }
 
     private void RocketImpact(Vector3 _impactPos)

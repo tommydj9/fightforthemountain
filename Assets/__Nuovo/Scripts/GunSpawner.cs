@@ -36,13 +36,13 @@ public class GunSpawner : MonoBehaviour
         {
             if(Guns[i].probilitySpawn > rnd)
             {
-                Debug.Log(Guns[i].name);
+                //Debug.Log(Guns[i].name);
                 RandomSpawn(rndPosition,i);
                 break;
             }
             else
             {
-                Debug.Log("Null");
+                //Debug.Log("Null");
                 
             }
 
@@ -55,7 +55,7 @@ public class GunSpawner : MonoBehaviour
     {
         
         Transform currentSpawn = SpawnGunPosition[SpawnValue];
-        Debug.Log("random spawn");
+        //Debug.Log("random spawn");
         Instantiate(Guns[index].prefabGun, currentSpawn.position, Quaternion.identity);
     }
 
