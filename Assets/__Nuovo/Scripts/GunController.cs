@@ -362,10 +362,10 @@ public class GunController : MonoBehaviour
             Vector3 popupPosition = popUpOffset + new Vector3(Random.Range(-popupRandomIntensity.x, popupRandomIntensity.x), 
                                                                           Random.Range(-popupRandomIntensity.y, popupRandomIntensity.y), 0);
 
-            GameObject popup = Instantiate(damagePopup, popupPosition, Quaternion.identity);
+            GameObject popup = Instantiate(damagePopup, _enemy.transform.position, Quaternion.identity);
             popup.transform.rotation = transform.rotation;
             popup.transform.parent = _enemy.transform;
-            popup.transform.localPosition = Vector3.zero;
+            popup.transform.localPosition = new Vector3(0,0,-100);
             popup.GetComponent<TextMesh>().text = _damage.ToString();
             popup.GetComponent<TextMesh>().color = _color;
 
