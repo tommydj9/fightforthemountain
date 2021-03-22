@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class coinController : MonoBehaviour
 {
+    public ParticleSystem coinAnimation_UI;
+
     [SerializeField]
     float value;
 
-    public ParticleSystem coinAnimation_UI;
+    
 
 
     private void PlayCoinAnimation_UI()
@@ -25,6 +27,7 @@ public class coinController : MonoBehaviour
             player.UpdateCoinsValue(value);
             player.UImanager.V_MONEY.text = player.totalCoins.ToString();
             Destroy(transform.gameObject);
+            PlayCoinAnimation_UI();
 
             // v-money += value -> 10 (valore intero)
             // v-moneyUI.text = v-money.toString (TMP)

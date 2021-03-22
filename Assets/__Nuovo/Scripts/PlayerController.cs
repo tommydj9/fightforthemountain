@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public int SlotGunIndex;
     public UIManager UImanager;
     public GunController gun;
+    public Slider healthBar;
 
     [Header("Camera Effects")]
     public CameraBloodEffect cameraBloodEffect;
@@ -38,9 +39,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float totalCoins;
 
+    
 
     private void Awake()
     {
+        healthBar.value = 1;
+
         Cursor.visible = false;
         ChangeGun(0);
         maxLife = life;
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float _damage)
     {
         life -= _damage;
+        healthBar.value = life / 90;
         if (life <= 0)
         {
            

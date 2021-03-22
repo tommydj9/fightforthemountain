@@ -37,6 +37,7 @@ public class GunController : MonoBehaviour
     public float probilitySpawn;
     public GameObject prefabGun;
     public float TimeCrosshair;
+    
 
     [Header("Rockets Information")]
     public bool hasRockets;
@@ -100,7 +101,7 @@ public class GunController : MonoBehaviour
         currentCartdrigeSize = cartdrigeSize;
         ammo = cartdrigeSize * cartdirges;
         UImanager.SetUiAmmo(currentCartdrigeSize.ToString());
-
+        
 
         
     }
@@ -365,7 +366,7 @@ public class GunController : MonoBehaviour
             GameObject popup = Instantiate(damagePopup, _enemy.transform.position, Quaternion.identity);
             popup.transform.rotation = transform.rotation;
             popup.transform.parent = _enemy.transform;
-            popup.transform.localPosition = new Vector3(0,0,-100);
+            popup.transform.localPosition = new Vector3(0,0,-60);
             popup.GetComponent<TextMesh>().text = _damage.ToString();
             popup.GetComponent<TextMesh>().color = _color;
 
