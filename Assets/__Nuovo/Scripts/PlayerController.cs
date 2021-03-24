@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera Effects")]
     public CameraBloodEffect cameraBloodEffect;
+    public ParticleSystem coinAnimation_UI;
 
     [HideInInspector]
     public float totalCoins;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+
         healthBar.value = 1;
 
         Cursor.visible = false;
@@ -59,8 +61,8 @@ public class PlayerController : MonoBehaviour
             UImanager.ArrayImage[i].enabled = false;
         }
 
-       
 
+        coinAnimation_UI.transform.gameObject.SetActive(false);
 
 
     }
@@ -69,6 +71,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        //CONVERTIRE DA UPDATE AD EVENTO
+        for (int i = 0; i < SlotGun.Length; i++)
+        {
+            Debug.Log("SlotGun test: " + i);
+            SlotGun[i].GetComponent<GunController>().UpdateEquipedGun();
+        }
+
         //Salto
         isTouch = Physics.CheckSphere(groundChecker.position, groundCheckerRadius, Terreno);
 
@@ -106,9 +116,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             SlotGunIndex++;
-            
-            
-
+           
 
             if (SlotGunIndex > SlotGun.Length - 1)
             {
@@ -149,6 +157,8 @@ public class PlayerController : MonoBehaviour
             UImanager.crosshair = SlotGun[SlotGunIndex]
             .GetComponent<GunController>().CrosshairImage;
             UImanager.actualCrosshairImage.sprite = UImanager.crosshair;
+
+            
 
         }
 
@@ -264,6 +274,12 @@ public class PlayerController : MonoBehaviour
             //TODO: GameOver
         }
 
+    }
+
+    public void PlayCoinAnimation_UI()
+    {
+        coinAnimation_UI.gameObject.SetActive(false);
+        coinAnimation_UI.gameObject.SetActive(true);
     }
 
 

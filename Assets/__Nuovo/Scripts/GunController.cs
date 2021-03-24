@@ -37,6 +37,7 @@ public class GunController : MonoBehaviour
     public float probilitySpawn;
     public GameObject prefabGun;
     public float TimeCrosshair;
+    public bool isEquiped;
     
 
     [Header("Rockets Information")]
@@ -414,7 +415,24 @@ public class GunController : MonoBehaviour
 
     }
 
+    public void UpdateEquipedGun()
+    {
+        if (gunImage != null && gunImageSelected != null)
+        {
+            if (isEquiped == false)
+            {
+                gunImage.gameObject.SetActive(false);
+                gunImageSelected.gameObject.SetActive(false);
+            }
+            else
+            {
+                gunImage.gameObject.SetActive(true);
+                gunImageSelected.gameObject.SetActive(true);
 
+            }
+        }
+        
+    }
 
 
 

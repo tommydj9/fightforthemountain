@@ -11,13 +11,6 @@ public class coinController : MonoBehaviour
 
     
 
-
-    private void PlayCoinAnimation_UI()
-    {
-        coinAnimation_UI.Stop();
-        coinAnimation_UI.Play();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>())
@@ -27,7 +20,7 @@ public class coinController : MonoBehaviour
             player.UpdateCoinsValue(value);
             player.UImanager.V_MONEY.text = player.totalCoins.ToString();
             Destroy(transform.gameObject);
-            PlayCoinAnimation_UI();
+            player.PlayCoinAnimation_UI();
 
             // v-money += value -> 10 (valore intero)
             // v-moneyUI.text = v-money.toString (TMP)

@@ -145,8 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f49d4b805dcc84081edff94ef423c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinAnimation_UI: {fileID: 3518726239366034717, guid: 50d12915bc87f244fa6c075d8eef7ba6,
+    type: 3}
   value: 10
-  coinAnimation_UI: {fileID: 0}
 --- !u!1 &3895358720836140436
 GameObject:
   m_ObjectHideFlags: 0
