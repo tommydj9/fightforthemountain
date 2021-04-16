@@ -5,10 +5,12 @@ using UnityEngine;
 public class GunSpawner : MonoBehaviour
 {
     public float spawnTimer;
-    public float spawnRate;
     public Transform[] SpawnGunPosition;
-    public GunController[] Guns;
+    public PickableGun[] pickableGuns;
     private bool canSpawnGun;
+    [Range(1, 100)]
+    public int probBetweenGunAndResourced;
+    public PickableResource[] pickableResources;
     
   
     // Start is called before the first frame update
@@ -17,7 +19,7 @@ public class GunSpawner : MonoBehaviour
         canSpawnGun = true;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (canSpawnGun == true)
@@ -29,34 +31,103 @@ public class GunSpawner : MonoBehaviour
 
     public void CheckGun()
     {
-       float rnd =  Random.Range(0f,1f);
-       int rndPosition = Random.Range(0, SpawnGunPosition.Length -1);
+       int rnd =  Random.Range(1,100);
+       int rndPosition = Random.Range(0, SpawnGunPosition.Length );
 
-        for (int i = 0; i < Guns.Length; i++)
-        {
-            if(Guns[i].probilitySpawn > rnd)
+        OrderGunsByProbability();
+
+        for (int i = 0; i < pickableGuns.Length; i++)
+        { 
+            if (rnd < pickableGuns[i].spawnProbability)
             {
-                //Debug.Log(Guns[i].name);
-                RandomSpawn(rndPosition,i);
+                GunRandomSpawn(rndPosition, i);
                 break;
             }
-            else
-            {
-                //Debug.Log("Null");
-                
-            }
-
         }
-        
+
        
     }
 
-    public void RandomSpawn(int SpawnValue, int index)
+    public void CheckResources()
+    {
+        int rnd = Random.Range(1, 100);
+        int rndPosition = Random.Range(0, SpawnGunPosition.Length);
+
+        OrderResourcesOnProbability();
+
+        for (int i = 0; i < pickableResources.Length; i++)
+        {
+            if (rnd < pickableResources[i].spawnProbability)
+            {
+                RandomResourceSpawn(rndPosition, i);
+                break;
+            }
+        }
+    }
+
+
+
+    public void OrderGunsByProbability()
+    {
+       PickableGun temp;
+        for (int i = 0; i < pickableGuns.Length; i++)
+        {
+            for (int j = 0; j < pickableGuns.Length -1; j++)
+            {
+                if (pickableGuns[j].spawnProbability > pickableGuns[j +1].spawnProbability)
+                {
+                    temp = pickableGuns[j + 1];
+                    pickableGuns[j + 1] = pickableGuns[j];
+                    pickableGuns[j] = temp;
+                    
+                }
+            }
+        }
+    }
+
+    void OrderResourcesOnProbability()
+    {
+        PickableResource temp;
+
+        for (int i = 0; i < pickableResources.Length; i++)
+        {
+            for (int j = 0; j < pickableResources.Length - 1; j++)
+            {
+                if (pickableResources[j].spawnProbability > pickableResources[j + 1].spawnProbability)
+                {
+                    temp = pickableResources[j + 1];
+                    pickableResources[j + 1] = pickableResources[j];
+                    pickableResources[j] = temp;
+                }
+            }
+        }
+    }
+
+    public void GunRandomSpawn(int SpawnValue, int index)
     {
         
         Transform currentSpawn = SpawnGunPosition[SpawnValue];
         //Debug.Log("random spawn");
-        Instantiate(Guns[index].prefabGun, currentSpawn.position, Quaternion.identity);
+        if (currentSpawn.gameObject.activeSelf)
+        {
+            pickableGuns[index].currenSpawnPoint = currentSpawn;
+            Instantiate(pickableGuns[index], currentSpawn.position, Quaternion.identity);
+            currentSpawn.gameObject.SetActive(false);
+        }
+        
+    }
+
+    public void ResourceRandomSpawn(int SpawnValue, int index)
+    {
+
+        Transform currentSpawn = SpawnGunPosition[SpawnValue];
+        if (currentSpawn.gameObject.activeSelf)
+        {
+            pickableResources[index].currentSpawnPoint = currentSpawn;
+            Instantiate(pickableResources[index], currentSpawn.position, Quaternion.identity);
+            currentSpawn.gameObject.SetActive(false);
+        }
+
     }
 
 
@@ -64,10 +135,18 @@ public class GunSpawner : MonoBehaviour
     IEnumerator Timer()
     {
         canSpawnGun = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(spawnTimer);
         canSpawnGun = true;
+        int rnd = Random.Range(1, 100);
+        if (rnd < probBetweenGunAndResourced)
+        {
+          CheckGun();
+        }
+        else
+        {
+            CheckResources();
+        }
 
-        CheckGun();
 
     }
 

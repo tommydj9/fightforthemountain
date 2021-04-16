@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public int SlotGunIndex;
     public UIManager UImanager;
     public GunController gun;
+    public int idPosition;
     public Slider healthBar;
 
     [Header("Camera Effects")]
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
         healthBar.value = 1;
 
         Cursor.visible = false;
-        ChangeGun(0);
+        ChangeGun(0,true);
         maxLife = life;
         totalCoins = 0;
 
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
             
 
-            ChangeGun(SlotGunIndex);
+            ChangeGun(SlotGunIndex,true);
             ChangeImage(UImanager.emptySlot);
      
 
@@ -151,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
            
 
-            ChangeGun(SlotGunIndex);
+            ChangeGun(SlotGunIndex,false);
             ChangeImage(UImanager.emptySlot);
             //ChangeCrosshair(UImanager.emptyChrosshair);
             UImanager.crosshair = SlotGun[SlotGunIndex]
@@ -194,21 +195,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeGun(int  _SlotGunIndex)
+    public void ChangeGun(int  _SlotGunIndex,bool _changeUp)
     {
        
-        for (int i = 0; i < SlotGun.Length; i++)
+
+        if (SlotGun[SlotGunIndex].GetComponent<GunController>().isEquiped == true)
         {
+         for (int i = 0; i < SlotGun.Length; i++)
+         {
             SlotGun[i].SetActive(false);
             
+         }
+         
+            SlotGun[_SlotGunIndex].SetActive(true);
+            SlotGunIndex = _SlotGunIndex;
+            CurrentAnimator = animator[SlotGunIndex];
+            GunController currecntGun = SlotGun[_SlotGunIndex].GetComponent<GunController>();
+            UImanager.SetUiAmmo(currecntGun.currentCartdrigeSize.ToString());
         }
-
-        SlotGun[_SlotGunIndex].SetActive(true);
-        SlotGunIndex = _SlotGunIndex;
-        CurrentAnimator = animator[SlotGunIndex];
-        GunController currecntGun = SlotGun[_SlotGunIndex].GetComponent<GunController>();
-        UImanager.SetUiAmmo(currecntGun.currentCartdrigeSize.ToString());
-
+        else
+        {
+            if (_changeUp == true)
+            {
+                ChangeGun(SlotGunIndex + 1, _changeUp);
+            }
+            else
+            {
+                ChangeGun(SlotGunIndex - 1, _changeUp);
+            }
+        }
     }
 
     public void ChangeImage(Image _emptySlot )
