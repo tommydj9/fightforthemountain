@@ -30,6 +30,7 @@ public class GunController : MonoBehaviour
     public AudioClip ReloadSound;
     public UIManager UImanager;
 
+    public int gunInOrderID;
     public Image gunImage;//Senza contorno
     public Image[] gunImagesSelected; //Con contorno
     public Sprite CrosshairImage;
@@ -102,9 +103,9 @@ public class GunController : MonoBehaviour
         currentCartdrigeSize = cartdrigeSize;
         ammo = cartdrigeSize * cartdirges;
         UImanager.SetUiAmmo(currentCartdrigeSize.ToString());
-        
+        gunImagesSelected[gunInOrderID].gameObject.SetActive(true);
 
-        
+
     }
     private void Start()
     {
@@ -415,7 +416,7 @@ public class GunController : MonoBehaviour
 
     }
 
-    public void UpdateEquipedGun()
+    public void UpdateEquippedGun()
     {
         if (gunImage != null && gunImagesSelected != null)
         {
@@ -423,14 +424,14 @@ public class GunController : MonoBehaviour
             {
                 gunImage.gameObject.SetActive(false);
                 if (player.idPosition < gunImagesSelected.Length)
-                    gunImagesSelected[player.idPosition].gameObject.SetActive(false);
+                    gunImagesSelected[gunInOrderID].gameObject.SetActive(false);
                 
             }
             else
             {
                 gunImage.gameObject.SetActive(true);
-                //gunImage.transform.position = gunImagesSelected[player.idPosition].transform.position;
-                //gunImagesSelected[player.idPosition].gameObject.SetActive(true);
+                gunImage.transform.position = gunImagesSelected[gunInOrderID].transform.position;
+                gunImagesSelected[player.idPosition].gameObject.SetActive(true);
             }
         }
         

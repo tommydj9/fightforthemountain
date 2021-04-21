@@ -52,9 +52,6 @@ public class EnemyController : MonoBehaviour
         
         Destroy(gameObject, 3.5f);
 
-
-
-        //Aggiungere shader dissolvenza
         //transform.localScale = Vector3.zero;
     }
 

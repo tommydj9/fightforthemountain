@@ -55,8 +55,7 @@ public class PlayerController : MonoBehaviour
         maxLife = life;
         totalCoins = 0;
 
-        UImanager.crosshair = SlotGun[SlotGunIndex]
-            .GetComponent<GunController>().CrosshairImage;
+        UImanager.crosshair = SlotGun[SlotGunIndex].GetComponent<GunController>().CrosshairImage;
         UImanager.actualCrosshairImage.sprite = UImanager.crosshair;
 
         for (int i = 1; i < UImanager.ArrayImage.Length; i++)
@@ -79,7 +78,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < SlotGun.Length; i++)
         {
             Debug.Log("SlotGun test: " + i);
-            SlotGun[i].GetComponent<GunController>().UpdateEquipedGun();
+            SlotGun[i].GetComponent<GunController>().UpdateEquippedGun();
         }
 
         //Salto
@@ -126,11 +125,8 @@ public class PlayerController : MonoBehaviour
                 SlotGunIndex = 0;
             }
 
-            
-
             ChangeGun(SlotGunIndex,true);
-            ChangeImage(UImanager.emptySlot);
-     
+            ChangeImage(UImanager.emptySlot);     
 
             Debug.Log(SlotGun[SlotGunIndex].GetComponent<GunController>().CrosshairImage.name);
 
@@ -223,19 +219,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeImage(Image _emptySlot )
+    public void ChangeImage(Image _emptySlot)
     {
         
         for (int i = 0; i < UImanager.ArrayImage.Length; i++)
         {
 
-            #region esempo logFormat
+            #region esempio logFormat
             //Debug.LogFormat("Oggetto colpito {0} --> Oggetto toccato {1}", hitObject.name, touchedObj.name);
             #endregion
 
             //gun.gunImageSelected.enabled = false;
 
-            if (i == SlotGunIndex)
+            if (i == currentGun.gunInOrderID)
             {
                 UImanager.ArrayImage[i].enabled = true;
             }
@@ -244,9 +240,7 @@ public class PlayerController : MonoBehaviour
                 UImanager.ArrayImage[i].enabled = false;
             }
 
-
         }
-     
 
     }
 
