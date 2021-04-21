@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] SlotGun;
     public int SlotGunIndex;
     public UIManager UImanager;
-    public GunController gun;
+    public GunController currentGun;
     public int idPosition;
     public Slider healthBar;
 
@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+
+        Cursor.lockState = CursorLockMode.Locked;
 
         healthBar.value = 1;
 
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-
+       
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             SlotGunIndex++;
@@ -130,11 +132,9 @@ public class PlayerController : MonoBehaviour
             ChangeImage(UImanager.emptySlot);
      
 
-            Debug.Log(SlotGun[SlotGunIndex]
-            .GetComponent<GunController>().CrosshairImage.name);
+            Debug.Log(SlotGun[SlotGunIndex].GetComponent<GunController>().CrosshairImage.name);
 
-            UImanager.crosshair = SlotGun[SlotGunIndex]
-            .GetComponent<GunController>().CrosshairImage;
+            UImanager.crosshair = SlotGun[SlotGunIndex].GetComponent<GunController>().CrosshairImage;
             
             UImanager.actualCrosshairImage.sprite = UImanager.crosshair;
 
@@ -155,12 +155,8 @@ public class PlayerController : MonoBehaviour
             ChangeGun(SlotGunIndex,false);
             ChangeImage(UImanager.emptySlot);
             //ChangeCrosshair(UImanager.emptyChrosshair);
-            UImanager.crosshair = SlotGun[SlotGunIndex]
-            .GetComponent<GunController>().CrosshairImage;
+            UImanager.crosshair = SlotGun[SlotGunIndex].GetComponent<GunController>().CrosshairImage;
             UImanager.actualCrosshairImage.sprite = UImanager.crosshair;
-
-            
-
         }
 
     }
@@ -171,9 +167,7 @@ public class PlayerController : MonoBehaviour
         healthBar.value = life / 90;
         if (life <= 0)
         {
-           
             Death();
-
         }
     }
 
@@ -195,23 +189,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeGun(int  _SlotGunIndex,bool _changeUp)
+    public void ChangeGun(int _SlotGunIndex, bool _changeUp)
     {
-       
+        if (_SlotGunIndex >= SlotGun.Length)
+        {
+            _SlotGunIndex = 0;
+        }
+
+        SlotGunIndex = _SlotGunIndex;
 
         if (SlotGun[SlotGunIndex].GetComponent<GunController>().isEquiped == true)
         {
-         for (int i = 0; i < SlotGun.Length; i++)
-         {
-            SlotGun[i].SetActive(false);
-            
-         }
-         
-            SlotGun[_SlotGunIndex].SetActive(true);
-            SlotGunIndex = _SlotGunIndex;
+            for (int i = 0; i < SlotGun.Length; i++)
+            {
+                SlotGun[i].SetActive(false);
+            }
+
+            SlotGun[SlotGunIndex].SetActive(true);
             CurrentAnimator = animator[SlotGunIndex];
-            GunController currecntGun = SlotGun[_SlotGunIndex].GetComponent<GunController>();
-            UImanager.SetUiAmmo(currecntGun.currentCartdrigeSize.ToString());
+            currentGun = SlotGun[SlotGunIndex].GetComponent<GunController>();
+            UImanager.SetUiAmmo(currentGun.currentCartdrigeSize.ToString());
         }
         else
         {

@@ -640,7 +640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2062,11 +2061,7 @@ MonoBehaviour:
   ReloadSound: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   UImanager: {fileID: 893688161}
   gunImage: {fileID: 415854672}
-  gunImagesSelected:
-  - {fileID: 1913094953}
-  - {fileID: 2024662339}
-  - {fileID: 736784179}
-  - {fileID: 1647438501}
+  gunImagesSelected: []
   CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
   probilitySpawn: 1
   prefabGun: {fileID: 1913094951}
@@ -2370,6 +2365,7 @@ GameObject:
   - component: {fileID: 758278780}
   - component: {fileID: 758278779}
   - component: {fileID: 758278778}
+  - component: {fileID: 758278782}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -2453,6 +2449,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &758278782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758278777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b938a925c7118cd45996bf007dced9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 1
+  spawnProbability: 50
+  currentSpawnPoint: {fileID: 0}
 --- !u!82 &762596710 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82989409868670618, guid: 097258b7ecb14449b94b476f6e61732e,
@@ -2575,7 +2586,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &893688159
 Canvas:
   m_ObjectHideFlags: 0
@@ -3348,7 +3358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4108,11 +4117,7 @@ MonoBehaviour:
   ReloadSound: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   UImanager: {fileID: 893688161}
   gunImage: {fileID: 589407165}
-  gunImagesSelected:
-  - {fileID: 1913094953}
-  - {fileID: 2024662339}
-  - {fileID: 736784179}
-  - {fileID: 1647438501}
+  gunImagesSelected: []
   CrosshairImage: {fileID: 21300000, guid: 8622eab7b3bcb374c908a0bff4abd33b, type: 3}
   probilitySpawn: 0.5
   prefabGun: {fileID: 1913094951}
@@ -4221,7 +4226,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1224508380 stripped
@@ -4336,7 +4340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -43, y: 52}
+  m_AnchoredPosition: {x: -43, y: 51.999878}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1278227385
@@ -5765,11 +5769,7 @@ MonoBehaviour:
   ReloadSound: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   UImanager: {fileID: 893688161}
   gunImage: {fileID: 64267446}
-  gunImagesSelected:
-  - {fileID: 1913094953}
-  - {fileID: 2024662339}
-  - {fileID: 736784179}
-  - {fileID: 1647438501}
+  gunImagesSelected: []
   CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
   probilitySpawn: 0.5
   prefabGun: {fileID: 1913094951}
@@ -6044,7 +6044,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1978058476
@@ -6073,6 +6072,7 @@ GameObject:
   - component: {fileID: 2009121558}
   - component: {fileID: 2009121557}
   - component: {fileID: 2009121556}
+  - component: {fileID: 2009121560}
   m_Layer: 0
   m_Name: Medikit
   m_TagString: Untagged
@@ -6156,6 +6156,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2009121560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009121555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b938a925c7118cd45996bf007dced9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  spawnProbability: 50
+  currentSpawnPoint: {fileID: 0}
 --- !u!1001 &2014055510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6683,6 +6698,10 @@ MonoBehaviour:
   pickableGuns:
   - {fileID: 975968736}
   - {fileID: 1158361819}
+  probBetweenGunAndResourced: 67
+  pickableResources:
+  - {fileID: 2009121560}
+  - {fileID: 758278782}
 --- !u!4 &2144887567
 Transform:
   m_ObjectHideFlags: 0
@@ -7091,6 +7110,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
+      propertyPath: SlotGun.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: animator.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
       propertyPath: gun
       value: 
       objectReference: {fileID: 0}
@@ -7129,16 +7158,6 @@ PrefabInstance:
       propertyPath: cameraBloodEffect
       value: 
       objectReference: {fileID: 1798884953}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: SlotGun.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: animator.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: SlotGun.Array.data[0]
@@ -7208,6 +7227,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: guns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: gunImagesSelected.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -7293,11 +7322,6 @@ PrefabInstance:
       objectReference: {fileID: 1778573973}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
-      propertyPath: guns.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
       propertyPath: gunImageSelected
       value: 
       objectReference: {fileID: 1913094953}
@@ -7326,11 +7350,6 @@ PrefabInstance:
       propertyPath: rocketStartPosition
       value: 
       objectReference: {fileID: 1224508382}
-    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
-        type: 3}
-      propertyPath: gunImagesSelected.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: gunImagesSelected.Array.data[0]

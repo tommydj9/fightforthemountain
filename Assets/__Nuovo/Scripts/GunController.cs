@@ -422,13 +422,15 @@ public class GunController : MonoBehaviour
             if (isEquiped == false)
             {
                 gunImage.gameObject.SetActive(false);
-                gunImagesSelected[player.idPosition].gameObject.SetActive(false);
+                if (player.idPosition < gunImagesSelected.Length)
+                    gunImagesSelected[player.idPosition].gameObject.SetActive(false);
+                
             }
             else
             {
                 gunImage.gameObject.SetActive(true);
-                gunImage.transform.position = gunImagesSelected[player.idPosition].transform.position;
-                gunImagesSelected[player.idPosition].gameObject.SetActive(true);
+                //gunImage.transform.position = gunImagesSelected[player.idPosition].transform.position;
+                //gunImagesSelected[player.idPosition].gameObject.SetActive(true);
             }
         }
         

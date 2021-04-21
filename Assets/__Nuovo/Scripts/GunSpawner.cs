@@ -48,6 +48,7 @@ public class GunSpawner : MonoBehaviour
        
     }
 
+
     public void CheckResources()
     {
         int rnd = Random.Range(1, 100);
@@ -59,7 +60,7 @@ public class GunSpawner : MonoBehaviour
         {
             if (rnd < pickableResources[i].spawnProbability)
             {
-                RandomResourceSpawn(rndPosition, i);
+                ResourceRandomSpawn(rndPosition, i);
                 break;
             }
         }
@@ -84,6 +85,7 @@ public class GunSpawner : MonoBehaviour
             }
         }
     }
+
 
     void OrderResourcesOnProbability()
     {
@@ -117,6 +119,7 @@ public class GunSpawner : MonoBehaviour
         
     }
 
+    
     public void ResourceRandomSpawn(int SpawnValue, int index)
     {
 
@@ -132,6 +135,7 @@ public class GunSpawner : MonoBehaviour
 
 
 
+
     IEnumerator Timer()
     {
         canSpawnGun = false;
@@ -140,7 +144,7 @@ public class GunSpawner : MonoBehaviour
         int rnd = Random.Range(1, 100);
         if (rnd < probBetweenGunAndResourced)
         {
-          CheckGun();
+            CheckGun();
         }
         else
         {
