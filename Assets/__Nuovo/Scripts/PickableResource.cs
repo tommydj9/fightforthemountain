@@ -7,7 +7,9 @@ public class PickableResource : MonoBehaviour
     
     public enum ResourceType
     {
-        Medkit,
+        SmallMedkit,
+        FullMedikit,
+        PoisonMedikit,
         Ammo
     }
 
@@ -27,15 +29,30 @@ public class PickableResource : MonoBehaviour
         {
             switch (resourceType)
             {
-                case ResourceType.Medkit:
-                    //other.GetComponent<PlayerController>().Heal();
+                case ResourceType.SmallMedkit:
+
+                    other.GetComponent<PlayerController>().Heal(20);
+                    Destroy(gameObject);
+                    break;
+                case ResourceType.FullMedikit:
+                    other.GetComponent<PlayerController>().MaxHeal();
+                    Destroy(gameObject);
+                    break;
+                case ResourceType.PoisonMedikit:
+                    other.GetComponent<PlayerController>().PoisonHeal(20);
+                    Destroy(gameObject);
                     break;
                 case ResourceType.Ammo:
-                    //other.GetComponent<PlayerController>().CurrentGun.GetAmmo();
+                    other.GetComponent<PlayerController>().currentGun.GetAmmo(1);
+                    Destroy(gameObject);
                     break;
+
+                
                 default:
                     break;
             }
+            
+                
 
             currentSpawnPoint.gameObject.SetActive(true);
             Destroy(transform.gameObject);

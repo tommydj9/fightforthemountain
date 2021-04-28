@@ -127,6 +127,8 @@ public class GunSpawner : MonoBehaviour
         if (currentSpawn.gameObject.activeSelf)
         {
             pickableResources[index].currentSpawnPoint = currentSpawn;
+
+           
             Instantiate(pickableResources[index], currentSpawn.position, Quaternion.identity);
             currentSpawn.gameObject.SetActive(false);
         }

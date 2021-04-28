@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private float life = 100;
+    public float life = 100;
     private float maxLife;
 
     public Animator[] animator;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+       
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -289,5 +290,27 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+    public void Heal(int value)
+    {
+        life += value;
+        healthBar.value = life / 90;
+        life = Mathf.Clamp(life, 0, maxLife);
+    }
+
+
+    public void MaxHeal()
+    {
+        life = maxLife;
+        healthBar.value = life / 90;
+    }
+
+
+    public void PoisonHeal(int value)
+    {
+        life -= value;
+        healthBar.value = life / 90;
+
+    }
 
 }

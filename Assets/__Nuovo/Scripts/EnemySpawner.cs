@@ -71,7 +71,9 @@ public class EnemySpawner : MonoBehaviour
     {
         int spawnerID = Random.Range(0, spawnerPoints.Length);
         enemy.transform.gameObject.SetActive(true);
-        Instantiate(enemy, spawnerPoints[spawnerID].transform.position.normalized, spawnerPoints[spawnerID].transform.rotation);
+        int randomPositionOffset = Random.Range(-5,5);
+        Vector3 OffsetPosition = new Vector3(randomPositionOffset, 0, randomPositionOffset);
+        Instantiate(enemy, spawnerPoints[spawnerID].transform.position + OffsetPosition, spawnerPoints[spawnerID].transform.rotation);
         enemy.transform.gameObject.SetActive(false);
     }
 

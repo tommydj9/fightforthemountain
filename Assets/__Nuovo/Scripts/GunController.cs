@@ -423,8 +423,8 @@ public class GunController : MonoBehaviour
             if (isEquiped == false)
             {
                 gunImage.gameObject.SetActive(false);
-                if (player.idPosition < gunImagesSelected.Length)
-                    gunImagesSelected[gunInOrderID].gameObject.SetActive(false);
+                //if (player.idPosition < gunImagesSelected.Length)
+                //    gunImagesSelected[gunInOrderID].gameObject.SetActive(false);
                 
             }
             else
@@ -435,6 +435,12 @@ public class GunController : MonoBehaviour
             }
         }
         
+    }
+
+
+    public void GetAmmo(int value)
+    {
+        cartdirges += value;
     }
 
 

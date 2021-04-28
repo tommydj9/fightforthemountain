@@ -18,28 +18,41 @@ public class PickableGun : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             player = other.GetComponent<PlayerController>();
-            gun.isEquiped = true;
-            currenSpawnPoint.gameObject.SetActive(true);
-
-            if (player.idPosition < player.SlotGun.Length)
+            for (int i = 0; i < player.SlotGun.Length; i++)
             {
-                player.idPosition++;
-                gun.gunInOrderID = player.idPosition;
-                GameObject tempGun = player.SlotGun[gun.gunInOrderID];
-                Animator tempAnimGun = player.animator[gun.gunInOrderID];
-                int indexToChange = 0;
-                for (int i = 0; i < player.SlotGun.Length; i++)
+                if (player.SlotGun[i].name == gun.name && player.SlotGun[i].GetComponent<GunController>().isEquiped) 
                 {
-                    if (player.SlotGun[i].name == gun.name)
-                    {
-                        indexToChange = i; 
-                    }
+                    player.SlotGun[i].GetComponent<GunController>().GetAmmo(3);
+                    break;
                 }
-                Debug.Log("indexToChange: " + indexToChange);
-                player.SlotGun[gun.gunInOrderID] = player.SlotGun.GetValue(indexToChange) as GameObject;
-                player.animator[gun.gunInOrderID] = player.animator.GetValue(indexToChange) as Animator;
-                player.SlotGun[indexToChange] = tempGun;
-                player.animator[indexToChange] = tempAnimGun;
+                else
+                {
+                    gun.isEquiped = true;
+                    currenSpawnPoint.gameObject.SetActive(true);
+
+                    if (player.idPosition < player.SlotGun.Length)
+                    {
+                        player.idPosition++;
+                        gun.gunInOrderID = player.idPosition;
+                        GameObject tempGun = player.SlotGun[gun.gunInOrderID];
+                        Animator tempAnimGun = player.animator[gun.gunInOrderID];
+                        int indexToChange = 0;
+
+                        for (int j = 0; j < player.SlotGun.Length; j++)
+                        {
+                            if (player.SlotGun[j].name == gun.name)
+                            {
+                                indexToChange = j;
+                            }
+                        }
+                        Debug.Log("indexToChange: " + indexToChange);
+                        player.SlotGun[gun.gunInOrderID] = player.SlotGun.GetValue(indexToChange) as GameObject;
+                        player.animator[gun.gunInOrderID] = player.animator.GetValue(indexToChange) as Animator;
+                        player.SlotGun[indexToChange] = tempGun;
+                        player.animator[indexToChange] = tempAnimGun;
+                    }
+            }
+            
             }
             
             Destroy(transform.gameObject);
