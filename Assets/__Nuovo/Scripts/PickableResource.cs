@@ -43,6 +43,7 @@ public class PickableResource : MonoBehaviour
                     Destroy(gameObject);
                     break;
                 case ResourceType.Ammo:
+                    Debug.Log("ammo");
                     other.GetComponent<PlayerController>().currentGun.GetAmmo(1);
                     Destroy(gameObject);
                     break;

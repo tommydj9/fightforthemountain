@@ -19,6 +19,7 @@ public class GunController : MonoBehaviour
     public  int currentCartdrigeSize;
     public int cartdrigeSize = 6;
     public int cartdirges = 3;
+    private int maxCartdriges = 15;
     public bool isReloading = false;
 
     public float fireRatio = 5;
@@ -39,6 +40,7 @@ public class GunController : MonoBehaviour
     public GameObject prefabGun;
     public float TimeCrosshair;
     public bool isEquiped;
+   
     
 
     [Header("Rockets Information")]
@@ -440,7 +442,14 @@ public class GunController : MonoBehaviour
 
     public void GetAmmo(int value)
     {
-        cartdirges += value;
+        
+        //if (cartdirges < 15)
+        //{
+        //    cartdirges += value;
+        //}
+
+        Mathf.Clamp(cartdirges, 0, maxCartdriges);
+        
     }
 
 
