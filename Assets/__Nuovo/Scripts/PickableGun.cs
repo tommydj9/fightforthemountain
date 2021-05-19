@@ -13,13 +13,13 @@ public class PickableGun : MonoBehaviour
 
     private PlayerController player;
     private bool getGun;
-    public Image popup;
+
 
 
 
     private void Start()
     {
-        popup.enabled = false;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +29,7 @@ public class PickableGun : MonoBehaviour
         {
             player = other.GetComponent<PlayerController>();
 
-            popup.enabled = true;
+            
 
 
 
@@ -87,7 +87,7 @@ public class PickableGun : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            popup.enabled = false;
+            
             if (gun.isEquiped == true)
             {
                 gun.GetAmmo(3);
@@ -133,6 +133,6 @@ public class PickableGun : MonoBehaviour
     {
         //TODO: Hide Popup
         getGun = false;
-        popup.enabled = false;
+       
     }
 }

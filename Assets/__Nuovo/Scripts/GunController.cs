@@ -123,10 +123,15 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
-        Mira();
-        Shoot();
-        Reload();
-        playerAnimator = player.CurrentAnimator;
+        if (player.canMove)
+        {
+            Mira();
+            Shoot();
+            Reload();
+            playerAnimator = player.CurrentAnimator;
+        }
+        
+     
     }
 
     public void Mira()

@@ -7,7 +7,7 @@ public class coinController : MonoBehaviour
     public ParticleSystem coinAnimation_UI;
 
     [SerializeField]
-    float value;
+    int value;
 
     
 

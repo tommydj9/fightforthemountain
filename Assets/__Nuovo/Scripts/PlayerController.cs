@@ -33,19 +33,21 @@ public class PlayerController : MonoBehaviour
     public GunController currentGun;
     public int idPosition;
     public Slider healthBar;
+    public bool canMove;
 
     [Header("Camera Effects")]
     public CameraBloodEffect cameraBloodEffect;
     public ParticleSystem coinAnimation_UI;
 
-    [HideInInspector]
-    public float totalCoins;
+    
+    public int totalCoins;
 
     
 
     private void Awake()
     {
-       
+
+        canMove = true;
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -97,13 +99,14 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Sqrt(forzaSalto * gravity * -1);
             jumpCounter++;
         }
-
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 movimento = transform.right * x + transform.forward * z;
         characterController.Move(movimento * Time.deltaTime * speed);
         velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
+        if (canMove)
+            characterController.Move(velocity * Time.deltaTime);
 
         #region metodo pro
 
@@ -245,7 +248,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void UpdateCoinsValue(float _value)
+    public void UpdateCoinsValue(int _value)
     {
         totalCoins += _value;
     }
