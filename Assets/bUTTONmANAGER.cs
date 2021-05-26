@@ -17,6 +17,11 @@ public class bUTTONmANAGER : MonoBehaviour
     public GunController scar;
     public GunController p90;
 
+    [Header("Mats References")]
+    public Material purpleMat;
+    public Material goldenMat;
+    public Material spaceMat;
+
     [Header("Values")]
     [SerializeField]
     private int sniperCost = 20;
@@ -26,6 +31,8 @@ public class bUTTONmANAGER : MonoBehaviour
     private int scarCost = 100;
     [SerializeField]
     private int P90Cost = 70;
+    [SerializeField]
+    private int purpleMatCost = 70;
 
     private void Start()
     {
@@ -189,6 +196,24 @@ public class bUTTONmANAGER : MonoBehaviour
                 player.animator[indexToChange] = tempAnimGun;
             }
 
+        }
+    }
+
+    public void BuyPurpleMat()
+    {
+        Debug.Log("v-money click");
+        Debug.Log("player.totalCoins" + player.totalCoins + "scarCost" + purpleMatCost);
+
+        if (player.totalCoins >= purpleMatCost)
+        {
+            player.totalCoins = player.totalCoins - purpleMatCost;
+
+            totalCoinsText.text = player.totalCoins.ToString();
+
+            for (int i = 0; i < player.gunsModels.Length; i++)
+            {
+                player.gunsModels[i].GetComponent<Renderer>().material = purpleMat;
+            }
         }
     }
 

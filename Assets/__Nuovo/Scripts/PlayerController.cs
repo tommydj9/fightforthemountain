@@ -39,7 +39,12 @@ public class PlayerController : MonoBehaviour
     public CameraBloodEffect cameraBloodEffect;
     public ParticleSystem coinAnimation_UI;
 
-    
+
+    [Header("Guns Models")]
+    public GameObject[] gunsModels;
+
+
+
     public int totalCoins;
 
     
@@ -56,7 +61,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         ChangeGun(0,true);
         maxLife = life;
-        totalCoins = 0;
+        totalCoins = 420;
 
         UImanager.crosshair = SlotGun[SlotGunIndex].GetComponent<GunController>().CrosshairImage;
         UImanager.actualCrosshairImage.sprite = UImanager.crosshair;
