@@ -2620,6 +2620,7 @@ MonoBehaviour:
   - {fileID: 736784179}
   - {fileID: 1647438501}
   - {fileID: 1647438501}
+  - {fileID: 1647438501}
   CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
   probilitySpawn: 1
   prefabGun: {fileID: 1913094951}
@@ -2932,6 +2933,12 @@ Animator:
 --- !u!4 &766186411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4144230316375096, guid: fc60d6f96c1a24edcaefa2c200e2eef3,
+    type: 3}
+  m_PrefabInstance: {fileID: 360699948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &785650721 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95479368204855384, guid: fc60d6f96c1a24edcaefa2c200e2eef3,
     type: 3}
   m_PrefabInstance: {fileID: 360699948}
   m_PrefabAsset: {fileID: 0}
@@ -4624,11 +4631,12 @@ MonoBehaviour:
   - {fileID: 736784179}
   - {fileID: 1647438501}
   - {fileID: 1647438501}
+  - {fileID: 1647438501}
   CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
   probilitySpawn: 0
   prefabGun: {fileID: 1913094951}
   TimeCrosshair: 0.2
-  isEquiped: 1
+  isEquiped: 0
   hasRockets: 0
   explosionDamage: 0
   RocketSpeed: 0
@@ -5439,22 +5447,23 @@ MonoBehaviour:
   reloadAnimationTime: 2
   hitEffect: {fileID: 1059349968455128, guid: 7f0e269983f1d4b128c7a855a59a6de1, type: 3}
   Sistema: {fileID: 1000013355911406, guid: 532c8be46e6660e49a9e48ce60e82441, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1685695986}
   shootingSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   ReloadSound: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
-  UImanager: {fileID: 0}
-  gunInOrderID: 0
-  gunImage: {fileID: 0}
+  UImanager: {fileID: 893688161}
+  gunInOrderID: 1
+  gunImage: {fileID: 589407165}
   gunImagesSelected:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CrosshairImage: {fileID: 0}
+  - {fileID: 1913094953}
+  - {fileID: 2024662339}
+  - {fileID: 736784179}
+  - {fileID: 736784179}
+  - {fileID: 1647438501}
+  - {fileID: 1647438501}
+  CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
   probilitySpawn: 0
   prefabGun: {fileID: 1913094951}
-  TimeCrosshair: 0
+  TimeCrosshair: 0.5
   isEquiped: 0
   hasRockets: 0
   explosionDamage: 0
@@ -5651,6 +5660,7 @@ MonoBehaviour:
   - {fileID: 1913094953}
   - {fileID: 2024662339}
   - {fileID: 736784179}
+  - {fileID: 1647438501}
   - {fileID: 1647438501}
   - {fileID: 1647438501}
   CrosshairImage: {fileID: 21300000, guid: 8622eab7b3bcb374c908a0bff4abd33b, type: 3}
@@ -7405,6 +7415,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45fb3b613218da844b047d1f9349e0d6, type: 3}
+--- !u!82 &1685695986 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82676503439037254, guid: fc60d6f96c1a24edcaefa2c200e2eef3,
+    type: 3}
+  m_PrefabInstance: {fileID: 360699948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1707174789
 GameObject:
   m_ObjectHideFlags: 0
@@ -8183,6 +8199,7 @@ MonoBehaviour:
   - {fileID: 1913094953}
   - {fileID: 2024662339}
   - {fileID: 736784179}
+  - {fileID: 1647438501}
   - {fileID: 1647438501}
   - {fileID: 1647438501}
   CrosshairImage: {fileID: 21300000, guid: 10e2368e205af104291f79e65067e94e, type: 3}
@@ -9878,7 +9895,7 @@ PrefabInstance:
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: animator.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -9913,7 +9930,7 @@ PrefabInstance:
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: totalCoins
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -9954,7 +9971,7 @@ PrefabInstance:
         type: 3}
       propertyPath: SlotGun.Array.data[4]
       value: 
-      objectReference: {fileID: 1382922996}
+      objectReference: {fileID: 1153001408}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: SlotGun.Array.data[5]
@@ -9984,7 +10001,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator.Array.data[4]
       value: 
-      objectReference: {fileID: 155336222}
+      objectReference: {fileID: 785650721}
     - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: animator.Array.data[5]
@@ -10025,6 +10042,16 @@ PrefabInstance:
       propertyPath: gunsModels.Array.data[6]
       value: 
       objectReference: {fileID: 374719513}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: animator.Array.data[6]
+      value: 
+      objectReference: {fileID: 155336222}
+    - target: {fileID: 5438254038734376195, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: SlotGun.Array.data[6]
+      value: 
+      objectReference: {fileID: 1153001408}
     - target: {fileID: 5438254038835229236, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: m_Name
@@ -10053,7 +10080,7 @@ PrefabInstance:
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: gunImagesSelected.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
@@ -10190,6 +10217,11 @@ PrefabInstance:
     - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
         type: 3}
       propertyPath: gunImagesSelected.Array.data[4]
+      value: 
+      objectReference: {fileID: 1647438501}
+    - target: {fileID: 5438254038835229238, guid: 4613abf811e55224da29e403fad2d5f5,
+        type: 3}
+      propertyPath: gunImagesSelected.Array.data[5]
       value: 
       objectReference: {fileID: 1647438501}
     - target: {fileID: 5438254039853536040, guid: 4613abf811e55224da29e403fad2d5f5,

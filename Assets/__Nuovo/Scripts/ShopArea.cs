@@ -35,7 +35,7 @@ public class ShopArea : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 uiShop.gameObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.None;
                 shopPopUp.enabled = false;
 
                 isActiveshop = true;
@@ -46,8 +46,9 @@ public class ShopArea : MonoBehaviour
                 player.canMove = false;
             }
 
-            if (Input.GetKey(KeyCode.Escape) && isActiveshop == true)
+            if (Input.GetKey(KeyCode.Escape) && isActiveshop == true) //Con ESC come tasto per uscire CursorLockMode va in Lock e poi subito dopo in None
             {
+                Cursor.lockState = CursorLockMode.Locked;
                 isActiveshop = false;
                 player.canMove = true;
                 uiShop.enabled = false;
