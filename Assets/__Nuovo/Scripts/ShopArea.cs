@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopArea : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ShopArea : MonoBehaviour
     public Image uiShop;
     public Image shopPopUp;
     private bool isActiveshop;
+    public TMP_Text vmoneyText;
 
     private void Start()
     {
@@ -36,6 +38,8 @@ public class ShopArea : MonoBehaviour
             {
                 uiShop.gameObject.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
+                vmoneyText.enabled = true;
+
                 shopPopUp.enabled = false;
 
                 isActiveshop = true;
@@ -50,10 +54,12 @@ public class ShopArea : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 isActiveshop = false;
+                vmoneyText.enabled = false;
                 player.canMove = true;
                 uiShop.enabled = false;
                 uiShop.gameObject.SetActive(false);
                 shopPopUp.enabled = true;
+
             }
         }
     }
@@ -61,6 +67,7 @@ public class ShopArea : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        
         shopPopUp.enabled = false;
         isActiveshop = false;
         player.canMove = true;

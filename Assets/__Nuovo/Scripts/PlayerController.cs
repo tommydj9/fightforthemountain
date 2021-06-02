@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public int idPosition;
     public Slider healthBar;
     public bool canMove;
+    public GameObject panel;
 
     [Header("Camera Effects")]
     public CameraBloodEffect cameraBloodEffect;
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-
+        panel.SetActive(false);
         canMove = true;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -181,7 +182,10 @@ public class PlayerController : MonoBehaviour
         //mettere animazione
         //mettere suono
         //mettere menù ricomincia
-        //Destroy(gameObject);
+        panel.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+
     }
 
 

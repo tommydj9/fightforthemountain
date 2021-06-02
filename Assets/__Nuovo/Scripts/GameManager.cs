@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
-
+    #region SINGLETON PATTERN
     private static GameManager _instance;
     public static GameManager instance {
         get {
@@ -21,6 +22,18 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+    #endregion
 
 
+    public void reload()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
+    public void quit()
+    {
+        Application.Quit();
+    }
 }
