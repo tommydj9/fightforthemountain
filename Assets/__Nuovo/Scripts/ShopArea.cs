@@ -37,7 +37,7 @@ public class ShopArea : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 uiShop.gameObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
                 vmoneyText.enabled = true;
 
                 shopPopUp.enabled = false;
@@ -54,7 +54,7 @@ public class ShopArea : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 isActiveshop = false;
-                vmoneyText.enabled = false;
+                vmoneyText.enabled = true;
                 player.canMove = true;
                 uiShop.enabled = false;
                 uiShop.gameObject.SetActive(false);
@@ -67,7 +67,7 @@ public class ShopArea : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
+        vmoneyText.enabled = true;
         shopPopUp.enabled = false;
         isActiveshop = false;
         player.canMove = true;

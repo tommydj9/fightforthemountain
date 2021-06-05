@@ -71,7 +71,7 @@ public class PickableResource : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             switch (resourceType)
             {

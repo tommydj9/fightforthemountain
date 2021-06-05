@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         panel.SetActive(false);
         canMove = true;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
 
         healthBar.value = 1;
 

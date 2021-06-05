@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerRotation : MonoBehaviour
 {
     public Transform playerTransform;
-    public float mouseSensibilty = 6f;
+    public float mouseSensibilty = 60f;
     public float rotationX;
     public float rotationY;
     private float mouseX;

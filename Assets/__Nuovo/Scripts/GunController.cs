@@ -88,11 +88,11 @@ public class GunController : MonoBehaviour
     //Private
     Animator playerAnimator;
     private float fireRatioTime;
-    int bodyDamage = 60;
-    int headDamage = 40;
-    int armsDamage = 60;
-    int feetDamage = 60;
-    int legsDamage = 60;
+    int bodyDamage = 50;
+    int headDamage = 100;
+    int armsDamage = 20;
+    int feetDamage = 10;
+    int legsDamage = 20;
     float reloadTime = 0;
 
     Vector3 popUpOffset = new Vector3(0,7f, 5);

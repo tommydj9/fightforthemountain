@@ -26,13 +26,15 @@ public class bUTTONmANAGER : MonoBehaviour
     [SerializeField]
     private int sniperCost = 20;
     [SerializeField]
-    private int rpgCost = 100;
+    private int rpgCost = 150;
     [SerializeField]
     private int scarCost = 100;
     [SerializeField]
-    private int P90Cost = 70;
+    private int P90Cost = 50;
     [SerializeField]
-    private int purpleMatCost = 70;
+    private int purpleMatCost = 10;
+    private int spaceMatCost = 60;
+    private int goldMatCost = 100;
 
     private void Start()
     {
@@ -213,6 +215,46 @@ public class bUTTONmANAGER : MonoBehaviour
             for (int i = 0; i < player.gunsModels.Length; i++)
             {
                 player.gunsModels[i].GetComponent<Renderer>().material = purpleMat;
+            }
+        }
+    }
+
+
+
+    public void BuySpaceMat()
+    {
+        Debug.Log("v-money click");
+        Debug.Log("player.totalCoins" + player.totalCoins + "scarCost" + spaceMatCost);
+
+        if (player.totalCoins >= spaceMatCost)
+        {
+            player.totalCoins = player.totalCoins - spaceMatCost;
+
+            totalCoinsText.text = player.totalCoins.ToString();
+
+            for (int i = 0; i < player.gunsModels.Length; i++)
+            {
+                player.gunsModels[i].GetComponent<Renderer>().material = spaceMat;
+            }
+        }
+    }
+
+
+
+    public void BuyGoldMat()
+    {
+        Debug.Log("v-money click");
+        Debug.Log("player.totalCoins" + player.totalCoins + "scarCost" + goldMatCost);
+
+        if (player.totalCoins >= goldMatCost)
+        {
+            player.totalCoins = player.totalCoins - goldMatCost;
+
+            totalCoinsText.text = player.totalCoins.ToString();
+
+            for (int i = 0; i < player.gunsModels.Length; i++)
+            {
+                player.gunsModels[i].GetComponent<Renderer>().material = goldenMat;
             }
         }
     }
